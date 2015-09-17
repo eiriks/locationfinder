@@ -20,16 +20,6 @@ import logging  # DEBUG, INFO, WARNING, ERROR, CRITICAL
 
 from mysql_settings import settings
 
-# select nrk2013b_tbl.id, CONCAT(nrk2013b_tbl.title, " ",
-# nrk2013b_tbl.full_text)
-# as text from nrk2013b_tbl left outer join article_location on
-# (nrk2013b_tbl.id = article_location.id)
-# where article_location.id is null
-# order by nrk2013b_tbl.id desc;
-# SELECT for_snavn, lat, long, printf("%.2f", long) FROM SSR WHERE enh_snavn
-# = 'National' AND skr_snskrstat in ('V', 'S', 'G', 'P')
-# GROUP BY printf("%.2f", long);
-
 
 class LocationFinder:
     '''experimantal module to extract locations from news articles
@@ -129,7 +119,7 @@ class LocationFinder:
         ugly_hack = []  # has some spare locations..
         for p in self.abroad_lat_lon:
             ugly_hack.append(p)
-        the_known_world = list(set(verdensdeler + regioner + land + hovedsteder + ugly_hack))
+        the_known_world = list(set(verdensdeler + regioner + land + hovedsteder + ugly_hack))  # noqa
         return the_known_world
 
     def load_abroad_lat_lon(self):
@@ -285,10 +275,10 @@ class LocationFinder:
                     loc2 = {c: self.get_ssr_lat_lon_options(c)}
                     closest_acc_point = {'place': None, 'dist': 100000}
                     for k in acc_points:
-                        shotest_dist = self.get_shortest_dist(acc_points[k], loc2)
+                        shotest_dist = self.get_shortest_dist(acc_points[k], loc2)  # noqa
                         if shotest_dist < closest_acc_point['dist']:
                             closest_acc_point['dist'] = shotest_dist
-                            closest_acc_point['place'] = acc_points[k].items()[0][0]
+                            closest_acc_point['place'] = acc_points[k].items()[0][0]  # noqa
                     # print "nærmeste: ", closest_acc_point
                     # if this is closer than X
                     # append to accepted
@@ -299,110 +289,7 @@ class LocationFinder:
                         accepted.append(c)
         return set(accepted)
 
-    # def get_locations_by_frequency(self, text):
-    #     """ return counter object
-    #     https://docs.python.org/2/library/collections.html#collections.Counter
-    #     """
-    #     cnt = Counter()
-    #     t = self.run_obt(text)   # get obt_format_text_chuncs
-    #     candidates = []
-    #     ssr_hit_counter = Counter()
-    #     hits_has_postcode = {}
-    #     land_fylke_kommune = {}
-    #
-    #     for t in re.compile("<word>.+</word>").split(t):  # and split on word
-    #         if t:                   # some stuff is just empty.. skip that..
-    #             if "prop" in t:     # locations get the odd "prop" attr
-    #                 hit = self.get_base(t)
-    #                 candidates.append(hit)
-    #
-    #                 if hit in self.fylker or hit in self.kommuner:
-    #                     cnt[hit] += 1
-    #                     ssr_hit_counter[hit] = 1    # manuely assigned
-    #                     hits_has_postcode[hit] = True
-    #                     land_fylke_kommune[hit] = True
-    #                 # Deal with places abroad?
-    #                 if hit in self.abroad:
-    #                     cnt[hit] += 1
-    #                     ssr_hit_counter[hit] = 1  # NB! manually assigned
-    #                     hits_has_postcode[hit] = True  # Also manually assigned
-    #                     land_fylke_kommune[hit] = True
-    #                 # remove these abiguest names that are both people & places
-    #                 elif hit not in self.ppnames:
-    #                     ssr_rows = self.get_nr_ssr_rows(hit)
-    #                     if ssr_rows > 0:  # but is the ssr db
-    #                         cnt[hit] += 1
-    #                         ssr_hit_counter[hit] = ssr_rows
-    #                         hits_has_postcode[hit] = self.is_poststed(hit)
-    #                         land_fylke_kommune[hit] = False
-    #
-    #     logging.debug("candidates: %s", ", ".join(set(candidates)))
-    #     # print ", ".join(candidates)
-    #     return [cnt, ssr_hit_counter, hits_has_postcode]
-
-    # def get_results_test(self, id):
-    #     mysql_connection, mysql_cur = self.connect()
-    #     mysql_query = '''SELECT CONCAT(title, " ", full_text) as text, url
-    # FROM
-    #                     nrk2013b_ism_tbl WHERE id=%s''' % (id)
-    #     mysql_cur.execute(mysql_query)
-    #     row = mysql_cur.fetchone()
-    #     [cnt, ssr_hit_counter, hits_has_postcode] = (
-    #         self.get_locations_by_frequency(row[0]))
-    #     # print "Teller: \t", cnt
-    #     # print "SSR hits: \t", ssr_hit_counter
-    #     # print "Postkode?: \t", hits_has_postcode
-    #     ranked = self.rank(cnt, ssr_hit_counter, hits_has_postcode)
-    #     # print "Ranked: \t", ranked
-    #     return ranked
-
-    # def dict_mul(self, d1, d2):
-    #     """http://stackoverflow.com/questions/15334783/\multiplying-values-from-\
-    #     two-different-dictionaries-together-in-python/15334895#15334895 """
-    #     d3 = dict()
-    #     for k in d1:
-    #         d3[k] = d1[k] * d2[k]
-    #     return d3
-
-    # def rank(self, cnt, ssr_hit_counter, hits_has_postcode):
-    #     """expects freq counter, ssr_hit_counter, and hits_has_postcode
-    #     counters and returnes a ranked weigthed counter based on
-    #     the inputs.
-    #     """
-    #     # boost names that has postcode
-    #     for hit in cnt:
-    #         if hits_has_postcode[hit]:
-    #             cnt[hit] = cnt[hit]*2
-    #     # print "Boost post \t", cnt
-    #     # normalize counter
-    #     total = sum(cnt.values(), 0.0)
-    #     for key in cnt:
-    #         cnt[key] /= total
-    #     # print "normalisert: ", cnt
-    #
-    #     # weigh hits i SSR
-    #     try:
-    #         max_hits = float(ssr_hit_counter[max(ssr_hit_counter, key=ssr_hit_counter.get)])
-    #     except:
-    #         max_hits = 0
-    #
-    #     for key in cnt:
-    #         # ssr_hit_counter[key] = 1-(ssr_hit_counter[key] / total_ssr)
-    #         ssr_hit_counter[key] = max_hits+1-(ssr_hit_counter[key])
-    #
-    #     total_ssr = sum(ssr_hit_counter.values(), 0.0)
-    #     # print total_ssr, type(total_ssr)
-    #     for key in cnt:
-    #         ssr_hit_counter[key] = ssr_hit_counter[key]/total_ssr
-    #
-    #     # print "normalisert ssr: ", ssr_hit_counter
-    #     # gange den ene med den andre
-    #     ranked = self.dict_mul(cnt, ssr_hit_counter)
-    #     # print "ranked: ", ranked
-    #     d = sorted(ranked.items(), key=lambda x: x[1])
-    #     return d
-
-    def loop_text2(self):
+    def loop_text(self):
         """ the cur object excepted is a mysqlite cur object for the
         steder.db"""
         mysql_connection, mysql_cur = self.connect()
@@ -426,61 +313,6 @@ class LocationFinder:
         mysql_cur.execute(mysql_query)
         mysql_row = mysql_cur.fetchone()
         return mysql_row[0]
-
-    # def loop_text(self):
-    #     """ the cur object excepted is a mysqlite cur object for the
-    #     steder.db"""
-    #     mysql_connection, mysql_cur = self.connect()
-    #     mysql_query = '''SELECT CONCAT(title, " ", full_text) as text, url
-    #             FROM nrk2013b_ism_tbl order by rand() LIMIT 5'''
-    #     # limit 10000 OFFSET 119999
-    #     mysql_cur.execute(mysql_query)
-    #     mysql_rows = mysql_cur.fetchall()
-    #     # current_row = 1
-    #
-    #     for row in mysql_rows:
-    #         logging.debug("*"*20)
-    #         logging.debug(row[1])    # url
-    #         cnt, ssr_hit_counter, hits_has_postcode = (
-    #             self.get_locations_by_frequency(row[0])
-    #         )
-    #         print "freq: ", cnt
-    #         print "ssr hits: ", ssr_hit_counter
-    #         print "has postcode: ", hits_has_postcode
-    #         ranked2 = self.rank(cnt, ssr_hit_counter, hits_has_postcode)
-    #         print "ranked2: ", ranked2
-    #         print "_"*20
-    #
-    #         for hit in cnt:
-    #             if hits_has_postcode[hit]:
-    #                 cnt[hit] = cnt[hit]*2
-    #         print "boosta postnummer", cnt
-    #         # normaliser counter
-    #         total = sum(cnt.values(), 0.0)
-    #         for key in cnt:
-    #             cnt[key] /= total
-    #         print "normalisert: ", cnt
-    #         # vekte for hits i SSR
-    #         total_ssr = sum(ssr_hit_counter.values(), 0.0)
-    #         for key in cnt:
-    #             ssr_hit_counter[key] = 1-(ssr_hit_counter[key] / total_ssr)
-    #         print "normalisert ssr", ssr_hit_counter
-    #         # gange den ene med den andre
-    #         ranked = self.dict_mul(cnt, ssr_hit_counter)
-    #         print "ranked: ", ranked
-    #
-    #         # here I should intoduce ways to balance &
-    #         # cut the cnt above some threshold
-    #
-    #         # low SSR               > higher score
-    #         # high SSR              > lower score
-    #         # hight freq in text    > ligher score
-    #         # has postcode          > score above threshold     is_poststed()
-    #
-    #         logging.debug(row[0][:100].rstrip('\r\n')+"...")
-    #
-    #         # make som decitions about what to do with results,
-    #         # what constitutes a "real" right place?
 
 
 if __name__ == '__main__':
@@ -506,4 +338,4 @@ if __name__ == '__main__':
     logging.info("we are running")
 
     a = LocationFinder()
-    a.loop_text2()
+    a.loop_text()
