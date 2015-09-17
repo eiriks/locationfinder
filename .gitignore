@@ -5,6 +5,9 @@ __pycache__/
 # C extensions
 *.so
 
+mysql_settings.py
+steder.db
+
 # Distribution / packaging
 .Python
 env/
