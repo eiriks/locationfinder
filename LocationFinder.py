@@ -504,29 +504,6 @@ if __name__ == '__main__':
     # level to the default of WARNING.
     # logging.basicConfig(stream=sys.stderr,level=logging.DEBUG)
     logging.info("we are running")
-    print settings
 
     a = LocationFinder()
     a.loop_text2()
-    # lage en metode for å vippe resultater mot kjente Steder
-    # aka poststeder +masse, kommuner +mindre, utland +mindre, ...
-    # en pent balansert "likning" hadde vært fint..
-
-    # First create a db con & cur for sqlite
-    # con = lite.connect('steder.db')
-    # cur = con.cursor()
-    # # get ppnames: people and place names
-    # ppnames = load_person_names_that_is_also_place_names()
-    #
-    # loop_text(cur, ppnames)
-
-    #
-    # def strip_punctuation(self, s):
-    #     """http://stackoverflow.com/questions/265960/best-way-to-strip-punctuation-from-a-string-in-python
-    #     NB: string.punctuation does not include non-english punctuation
-    #     and translate does not deal with uncode too nicely:
-    #     http://stackoverflow.com/questions/11692199/string-translate-with-unicode-data-in-python
-    #     """
-    #     remove_punct_map = dict((ord(c), None) for c in string.punctuation)
-    #     out = s.translate(remove_punct_map)  # , string.punctuation)
-    #     return out
