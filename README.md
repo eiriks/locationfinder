@@ -1,6 +1,6 @@
 # LocationFinder
 ```python LocationFinder.py -d```
-Et stygt hack for å trekke stedsnavn ut av tekster. Sånn ca. Bruker ordlister som startpunkter og aksepterer også ord som er steder (er oppførst i Sentralt Stedsnavns Register, SSR) som er innen rimelig avstand fra allerede aksepterte steder.
+Et stygt hack for å trekke stedsnavn ut av tekster. Sånn ca. Bruker ordlister som startpunkter og aksepterer også ord som er steder (er oppførst i Sentralt Stedsnavns Register, [SSR](http://kartverket.no/Kart/Stedsnavn/)) som er innen rimelig avstand fra allerede aksepterte steder.
 
 ## OBT
 Tar det initielle settet med ord som kan være steder fra [Oslo-Bergen-Taggeren](https://github.com/noklesta/The-Oslo-Bergen-Tagger)
@@ -25,6 +25,8 @@ Ved bare å bruke lister, skårer vi ca 70%. Vi finner 70% av de stedene som omt
 ![Større avstand gir flere falske positive](http://stavelin.com/uib/LocationFinder_dist_v_errors.png "Antall feil kommer raskere enn antall rette, ved å øke radiusen for hva _rimelig nært_ er")
 
 
+## 100random_urls.txt
+Er min "gullstandard" for å teste mot. Først og fremst lærer jeg at 1) dey ikke alltid er lett å bestemme seg for hva et sted er og 2) at det vi ser på webben i dag ikke er det samme som jeg scrapet i 2013. Precision/recall-tall kan neppe bli en perfekt måling av dette, kanskje inter-coder-reliabillity er aktuelt?
 
 # H1 Dette er bare markdown eksempler
 ## H2 for min egen del
