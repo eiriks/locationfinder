@@ -14,7 +14,7 @@ Inneholder
 ```
 
 ## terskel for avstand
-
+Ved bare å bruke lister, skårer vi ca 70%. Vi finner 70% av de stedene som omtales. Ved å øke radiusen for _rimelig avstand_ får vi med noen flere, men også mange flere feil. Radiusen er hardkodet til 15km pr nå.
 ![Søtrre avstand gir flere falske positive](http://stavelin.com/uib/LocationFinder_dist_v_errors.png "Antall feil kommer raskere enn antall rette, ved å øke radiusen for hva _rimelig nært_ er")
 
 
