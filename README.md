@@ -9,6 +9,9 @@ Et stygt hack for å trekke stedsnavn ut av tekster. Sånn ca. Bruker ordlister 
 * Å bruke lister som startsted, og avstand som neste kriterium har noe for seg, men antall feil (falske positive) øver alt for rask i forhold til nye riktige steder.
 * Enten er SSR for liberalt og fantasifullt, eller så har jeg misforstått hvordan det er bygget opp. Gir meg lat/lons som ser ut som de er trillet som terninger.
 
+Jeg lurer på om det er like greit å legge denne ballen død, om ikke annet enn for en stund. Kanskje det er en bedre idé å bygge noe på [Nominatim](http://wiki.openstreetmap.org/wiki/Nominatim) i en lokal instalasjon. Jeg må kunne si ting som "finn meg en Moen på sørlandet i nærheten av Risør", og ikke bare et sted som heter Moen - de er det 747 av, og det er 20 bare i Aust-Agder ganske nært Risør. At koden også er et kaos får bare være.
+
+
 ## OBT
 Tar det initielle settet med ord som kan være steder fra [Oslo-Bergen-Taggeren](https://github.com/noklesta/The-Oslo-Bergen-Tagger)
 
