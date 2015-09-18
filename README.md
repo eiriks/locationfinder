@@ -2,6 +2,13 @@
 ```python LocationFinder.py -d```
 Et stygt hack for å trekke stedsnavn ut av tekster. Sånn ca. Bruker ordlister som startpunkter og aksepterer også ord som er steder (er oppførst i Sentralt Stedsnavns Register, [SSR](http://kartverket.no/Kart/Stedsnavn/)) som er innen rimelig avstand fra allerede aksepterte steder.
 
+# Noen raske tanker om hvorfor dette er en dårlig idé
+* Å bruke OBT slik gjør at scriptet blir treigt. Mye I/O
+* Kandidatene fra OBT er rimelige nok, men jeg mangler en fornuftig måte å luke ut mennesker som deler navn med et sted. Folk heter ´Eide´ og ´Nygård´, ´Solberg´ og ´Hauge´ - og det gjør halve Norges veikryss og bærbusker også. Det er 1815 rader med navn ´Stormyra´ i basen. Hauge, Åsen, Storhaugen, Langmyra, Moen, Holmen, Dalen - alle har hundrevis (>600) av steder med samme navn. Og alle disse navnene er også vanlige etternavn. Det er et mareritt.
+(´SELECT *, count(*) as c FROM SSR GROUP BY for_snavn order by c desc;´)
+* Å bruke lister som startsted, og avstand som neste kriterium har noe for seg, men antall feil (falske positive) øver alt for rask i forhold til nye riktige steder.
+* Enten er SSR for liberalt og fantasifullt, eller så har jeg misforstått hvordan det er bygget opp. Gir meg lat/lons som ser ut som de er trillet som terninger.
+
 ## OBT
 Tar det initielle settet med ord som kan være steder fra [Oslo-Bergen-Taggeren](https://github.com/noklesta/The-Oslo-Bergen-Tagger)
 

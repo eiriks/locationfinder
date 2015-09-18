@@ -4,12 +4,13 @@
 Created by Eirik Stavelin on 2015
 
 """
-
+__version__ = '0.1'
 import sys
 import re
 # import pygeoj    # https://github.com/karimbahgat/PyGeoj
 import pymysql              # for fetching data from newspaper db
 import requests
+import simplekml
 import sqlite3 as lite      # for ssr db
 # from collections import Counter
 from subprocess import Popen, PIPE
@@ -26,7 +27,8 @@ class LocationFinder:
     is based on Oslo-Bergen-Taggeren,
     Lists of important places  and sentralt stedsnavn register (SSR)'''
 
-    def __init__(self):
+    def __init__(self, dist_threshold=15):
+        self.dist_threshold = float(dist_threshold)
         self.con = lite.connect('steder.db')
         self.cur = self.con.cursor()
         # get ppnames: people and place names
@@ -51,9 +53,12 @@ class LocationFinder:
         # http://wiki.openstreetmap.org/wiki/Import/Catalogue/Central_place_name_register_import_(Norway)#GeoJSON
         """
         # ignore = ('U', 'A', 'F', 'K', 'I', 'H')
-        valid = ('V', 'S', 'G', 'P')
-        self.cur.execute("SELECT * FROM SSR WHERE (for_snavn = '%s' OR enh_snavn = '%s') \
-        AND skr_snskrstat IN %s;" % (s, s, valid))
+        # valid = ('V', 'S', 'G', 'P')
+        sql = """SELECT * FROM SSR WHERE (for_snavn = ? OR enh_snavn = ?)
+        AND skr_snskrstat IN ('V', 'S', 'G', 'P');"""  # % (s, s)
+        # print s
+        # print sql
+        self.cur.execute(sql, (s, s))
         if len(self.cur.fetchall()) == 0:
             return False
         else:
@@ -181,7 +186,6 @@ class LocationFinder:
 
     def get_candidates(self, text):
         candidates = []
-
         t = self.run_obt(text)
         # print t
         for t in re.compile("<word>.+</word>").split(t):  # and split on word
@@ -203,8 +207,7 @@ class LocationFinder:
         for r in rows:
             alt.append((r[1], r[2]))
         # print loc, "(",len(alt),")"
-        if len(alt) == 0:
-            # try worldview list.
+        if len(alt) == 0:  # try worldview list.
             try:
                 l = (self.abroad_lat_lon[loc][0], self.abroad_lat_lon[loc][1])
                 alt.append(l)
@@ -216,6 +219,16 @@ class LocationFinder:
         else:
             return alt
 
+    def get_semirandom_lat_lon(self, loc):
+        'return lat/lon for loc, randomly from places named loc in ssr'
+        sql = """SELECT for_snavn, lat, long FROM SSR WHERE
+            enh_snavn = ? OR for_snavn = ? AND skr_snskrstat in
+            ('V', 'S', 'G', 'P') ORDER BY RANDOM() LIMIT 1;
+            """  # % (loc)
+        self.cur.execute(sql, (loc, loc))
+        rows = self.cur.fetchall()
+        return rows[0]
+
     def f(x):
         """ at 200km away, I only award 0.1 points. """
         return (0.1**(x/200.0))
@@ -225,9 +238,6 @@ class LocationFinder:
         if (len(loc1.items()[0][1]) == 0 and loc1.items()[0][0] != 'Norge'):
             print loc1
             print loc2
-        # if len(loc1.items()[0][1]) == 0:
-        #     print "\t", loc1
-        #     print "\t", loc2
 
         for pair in loc1.items()[0][1]:
             for p2 in loc2.items()[0][1]:
@@ -236,6 +246,53 @@ class LocationFinder:
         # print "%s - %s is \t%.0f \tkm" % (
         #     loc1.items()[0][0], loc2.items()[0][0], closest_dist)
         return closest_dist
+
+    def get_shortest_dist2(self, loc1, loc2):
+        '''loc1 are "safe", {u'Trondheim': [(63.4305658, 10.3951929)]
+        returns closest (lat,lon) for loc2
+        I assumes the variety of lat/lons for loc1 to be few,
+        is more than on at all'''
+        closest_dist = 100000  # too far
+        loc2_lat_lon = ()
+        # print "loc1", loc1
+        # print "loc2", loc2
+        if (len(loc1.items()[0][1]) == 0 and loc1.items()[0][0] != 'Norge'):
+            print loc1
+            print loc2
+
+        for pair in loc1.items()[0][1]:
+            for p2 in loc2.items()[0][1]:
+                if (vincenty(pair, p2).kilometers < closest_dist):
+                    closest_dist = vincenty(pair, p2).kilometers
+                    loc2_lat_lon = p2
+        # print "%s - %s is \t%.0f \tkm" % (
+        #     loc1.items()[0][0], loc2.items()[0][0], closest_dist)
+        return [closest_dist, loc2_lat_lon]
+
+    def loop_text(self):
+        """ the cur object excepted is a mysqlite cur object for the
+        steder.db"""
+        mysql_connection, mysql_cur = self.connect()
+        mysql_query = '''SELECT CONCAT(title, " ", full_text) as text, url FROM
+                        nrk2013b_ism_tbl order by rand() LIMIT 5'''
+        # limit 10000 OFFSET 119999
+        mysql_cur.execute(mysql_query)
+        mysql_rows = mysql_cur.fetchall()
+        # current_row = 1
+        for row in mysql_rows:
+            print "\n"
+            cand = self.get_candidates(row[0])
+            # print "candidates: ", set(cand)
+            print self.get_locations(cand)
+        print "ferdig"
+
+    def get_text_from_url(self, id):
+        mysql_connection, mysql_cur = self.connect()
+        mysql_query = '''SELECT CONCAT(title, " ", full_text) as text FROM
+                        nrk2013b_ism_tbl WHERE id = %s''' % (id)
+        mysql_cur.execute(mysql_query)
+        mysql_row = mysql_cur.fetchone()
+        return mysql_row[0]
 
     def get_locations(self, candidates):
         accepted = []
@@ -282,37 +339,90 @@ class LocationFinder:
                     # print "nærmeste: ", closest_acc_point
                     # if this is closer than X
                     # append to accepted
-                    if closest_acc_point['dist'] < 15:
+                    if closest_acc_point['dist'] < self.dist_threshold:
                         # http://stavelin.com/uib/LocationFinder_dist_v_errors.png
                         # 10-20km from knows accepted locations looks fine
                         # print "add this", c
                         accepted.append(c)
         return set(accepted)
 
-    def loop_text(self):
-        """ the cur object excepted is a mysqlite cur object for the
-        steder.db"""
-        mysql_connection, mysql_cur = self.connect()
-        mysql_query = '''SELECT CONCAT(title, " ", full_text) as text, url FROM
-                        nrk2013b_ism_tbl order by rand() LIMIT 5'''
-        # limit 10000 OFFSET 119999
-        mysql_cur.execute(mysql_query)
-        mysql_rows = mysql_cur.fetchall()
-        # current_row = 1
-        for row in mysql_rows:
-            print "\n"
-            cand = self.get_candidates(row[0])
-            # print "candidates: ", set(cand)
-            print self.get_locations(cand)
-        print "ferdig"
+    def get_named_locations(self, candidates):
+        results = {}
+        accepted = []
+        temp_rejected = []
+        for c in candidates:
+            if c and self.is_in_ssr(c):
+                if (c in self.abroad_lat_lon.keys()):
+                    accepted.append(c)
+                    results[c] = (float(self.abroad_lat_lon[c][0]),
+                                  float(self.abroad_lat_lon[c][1]))
+                elif (c in self.abroad or
+                        c in self.fylker or
+                        c in self.kommuner or
+                        c in self.admin_steder or
+                        c in self.byer):
+                    accepted.append(c)
+                    results[c] = (float(self.get_semirandom_lat_lon(c)[1]),
+                                  float(self.get_semirandom_lat_lon(c)[2]))
+                elif (c in self.tettsteder and c not in self.ppnames):
+                    accepted.append(c)
+                    results[c] = (float(self.get_semirandom_lat_lon(c)[1]),
+                                  float(self.get_semirandom_lat_lon(c)[2]))
+                else:
+                    temp_rejected.append(c)
+        if len(accepted) > 0:  # only accept more if we have safe points
+            for c in set(temp_rejected):
+                if self.get_nr_ssr_rows(c) > 0:
+                    loc2 = {c: self.get_ssr_lat_lon_options(c)}
+                    closest_acc_point = {'place': None, 'dist': 100000}
+                    for k in results:
+                        shotest_dist = self.get_shortest_dist2({k: [results[k]]}, loc2)  # noqa
+                        # print shotest_dist
+                        if shotest_dist[0] < closest_acc_point['dist']:
+                            closest_acc_point['dist'] = shotest_dist
+                            closest_acc_point['place'] = shotest_dist[1]  # noqa
 
-    def get_text_from_url(self, id):
+                    if closest_acc_point['dist'] < self.dist_threshold:
+                        # http://stavelin.com/uib/LocationFinder_dist_v_errors.png
+                        # 10-20km from knows accepted locations looks fine
+                        accepted.append(c)
+                        results[c] = shotest_dist[1]
+        # return set(accepted)
+        return results
+
+    def analyse_nrk2013(self):
         mysql_connection, mysql_cur = self.connect()
-        mysql_query = '''SELECT CONCAT(title, " ", full_text) as text FROM
-                        nrk2013b_ism_tbl WHERE id = %s''' % (id)
-        mysql_cur.execute(mysql_query)
-        mysql_row = mysql_cur.fetchone()
-        return mysql_row[0]
+        # q = """SELECT nrk2013b_tbl.id,
+        # CONCAT(nrk2013b_tbl.title, " ", nrk2013b_tbl.full_text)
+        # as text, nrk2013b_tbl.url from nrk2013b_tbl left outer join
+        #  article_location on (nrk2013b_tbl.id = article_location.id)
+        # WHERE article_location.id is null
+        # ORDER BY nrk2013b_tbl.id desc;"""
+        q = """ SELECT nrk2013b_tbl.id,
+        CONCAT(nrk2013b_tbl.title, " ", nrk2013b_tbl.full_text)
+        as text, nrk2013b_tbl.url from nrk2013b_tbl LIMIT 200;"""
+        mysql_cur.execute(q)
+        rows = mysql_cur.fetchall()
+
+        kml = simplekml.Kml()
+        cnt = 0
+        for r in rows:
+            cnt += 1
+            if (cnt % 500) == 0:
+                print cnt
+            # print r
+            cand = self.get_candidates(r[1])
+            results = self.get_named_locations(cand)
+            for place in results:
+                # print "place", place, results[place], r[0], r[2]
+                pnt = kml.newpoint(
+                    name=place,
+                    coords=[(results[place][1], results[place][0])],
+                    description=place)
+                pnt.snippet.content = unicode(r[0])+r[2]
+                # self.get_named_locations(place)
+                # do some ssr magic (random?)
+        kml.save("steder.kml")
 
 
 if __name__ == '__main__':
@@ -338,4 +448,5 @@ if __name__ == '__main__':
     logging.info("we are running")
 
     a = LocationFinder()
-    a.loop_text()
+    # a.loop_text()
+    a.analyse_nrk2013()

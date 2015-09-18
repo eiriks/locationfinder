@@ -7,6 +7,12 @@ __pycache__/
 
 mysql_settings.py
 steder.db
+# prøvde meg med å lage google earth kart med easykml
+# men jeg kommuniserer alt for tilfeldig med SSR til at dette
+# resulterer i fornuftige ting.
+*.kml
+*.dat       # fra cProfile
+*.profile   # fra cProfile Å bruke OBT slik jeg gjør tar lang tid.
 
 # Distribution / packaging
 .Python
