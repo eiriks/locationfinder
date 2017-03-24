@@ -10,7 +10,7 @@ import re
 # import pygeoj    # https://github.com/karimbahgat/PyGeoj
 import pymysql              # for fetching data from newspaper db
 import requests
-import simplekml
+# import simplekml
 import sqlite3 as lite      # for ssr db
 # from collections import Counter
 from subprocess import Popen, PIPE
@@ -85,7 +85,8 @@ class LocationFinder:
                 unix_socket="/Applications/MAMP/tmp/mysql/mysql.sock",
                 user=rdbms_username,
                 passwd=rdbms_password,
-                db="nrk", charset='utf8')
+                db="nrk", charset='utf8',
+                autocommit=True)
             cur = connection.cursor()
             cur.execute("USE nrk;")
             logging.debug("koblet til MySQL")
@@ -392,37 +393,44 @@ class LocationFinder:
 
     def analyse_nrk2013(self):
         mysql_connection, mysql_cur = self.connect()
-        # q = """SELECT nrk2013b_tbl.id,
-        # CONCAT(nrk2013b_tbl.title, " ", nrk2013b_tbl.full_text)
-        # as text, nrk2013b_tbl.url from nrk2013b_tbl left outer join
-        #  article_location on (nrk2013b_tbl.id = article_location.id)
-        # WHERE article_location.id is null
-        # ORDER BY nrk2013b_tbl.id desc;"""
-        q = """ SELECT nrk2013b_tbl.id,
+        q = """SELECT nrk2013b_tbl.id,
         CONCAT(nrk2013b_tbl.title, " ", nrk2013b_tbl.full_text)
-        as text, nrk2013b_tbl.url from nrk2013b_tbl LIMIT 200;"""
+        as text, nrk2013b_tbl.url from nrk2013b_tbl left outer join
+         article_location on (nrk2013b_tbl.id = article_location.id)
+        WHERE article_location.id is null
+        ORDER BY RAND(); """  # nrk2013b_tbl.id desc;"""
+        # q = """ SELECT nrk2013b_tbl.id,
+        # CONCAT(nrk2013b_tbl.title, " ", nrk2013b_tbl.full_text)
+        # as text, nrk2013b_tbl.url from nrk2013b_tbl;"""
+        logging.debug("running slow query")
         mysql_cur.execute(q)
+        logging.debug("affected rows = {}".format(mysql_cur.rowcount))
         rows = mysql_cur.fetchall()
-
-        kml = simplekml.Kml()
+        logging.debug("finnished running slow query")
+        # kml = simplekml.Kml()
         cnt = 0
         for r in rows:
             cnt += 1
-            if (cnt % 500) == 0:
-                print cnt
+            if (cnt % 50) == 0:
+                logging.debug(cnt)
             # print r
             cand = self.get_candidates(r[1])
             results = self.get_named_locations(cand)
             for place in results:
                 # print "place", place, results[place], r[0], r[2]
-                pnt = kml.newpoint(
-                    name=place,
-                    coords=[(results[place][1], results[place][0])],
-                    description=place)
-                pnt.snippet.content = unicode(r[0])+r[2]
+                # pnt = kml.newpoint(
+                #     name=place,
+                #     coords=[(results[place][1], results[place][0])],
+                #     description=place)
+                # pnt.snippet.content = unicode(r[0])+r[2]
                 # self.get_named_locations(place)
                 # do some ssr magic (random?)
-        kml.save("steder.kml")
+
+                sql = """ INSERT INTO article_location (id, url, location)
+                VALUES (%s, %s, %s); """
+                mysql_cur.execute(sql, (r[0], r[2], place))
+                # print("affected rows = {}".format(mysql_cur.rowcount))
+                # kml.save("steder.kml")
 
 
 if __name__ == '__main__':
