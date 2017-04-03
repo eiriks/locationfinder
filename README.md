@@ -1,7 +1,7 @@
 # LocationFinder
 LocationFinder er (enda et) forsøk på å stedfeste stedsnavn i tekster. Tekst inn, stedsnavn med koordinater ut. En tidligere versjon av LocationFinder feilet, av mange grunner. Å tolke steder fra tekst er ikke lett.
 
-I motsetning til tidligere forsøker jeg ikke selv i identifisere stedsnavn. Det overlater jeg til [polyglot](https://github.com/aboSamoor/polyglot), og fokuserer deretter på å finne ut av hvor disse potensielle (polyglot er heller ikke perfekt) stedene befinner seg.
+I motsetning til tidligere forsøker jeg ikke selv i identifisere stedsnavn. Det overlater jeg til [polyglot](https://github.com/aboSamoor/polyglot), og fokuserer deretter på å finne ut av hvor disse potensielle (polyglot er heller ikke perfekt) stedene befinner seg. Dette gjøres først og fremst ved å slå opp i [Sentralt stadnamnregister (SSR)](http://kartverket.no/kart/stedsnavn/sentralt-stadnamnregister-ssr/).
 
 ## Send tekst, få ut steder med koordinater
 ```python
@@ -23,7 +23,7 @@ lf.get_locations(tekst)
 ```
 
 ## Disambiguering
-Mange steder i Norge deler stedsnavn. Selv kommuner har samme navn! Bø i Telemark, Bø i Nordland. Os i Hordaland, Os i Hedmark. Og ikke engang begynn med hvor mange Lia, Sandvik, Grunnerund og Storemyr vi har! Uten kontekst er det umulig å vite hvor disse er. Men vi kan prioritere gjettingen, og guide prioriteringen. De er to måter dette gjøres på.
+Mange steder i Norge deler stedsnavn. Selv kommuner har samme navn! Bø i Telemark, Bø i Nordland. Os i Hordaland, Os i Hedmark. Og ikke engang begynn med hvor mange Lia, Sandvik, Grunnesund og Storemyr vi har! Uten kontekst er det umulig å vite hvor disse er. Men vi kan prioritere gjettingen, og guide prioriteringen. De er to måter dette gjøres på.
 1. [Bolstads](http://www.erikbolstad.no/geo/) prioritering. Dette er den samme som yr.no bruker (i alle fall samme utgangspunkt). Oppslag gjøres i geonames og SSR, og rankes etter Bolstads tabel. Større steder prioriteres over små, kommuner over tettsteder, tettsteder over navn på fjell og vidder etc.
 2. Hint. Sitter du i Bergen og snakker om Os, så snakker du mest sansynlig om Os i Hordaland og ikke om Os i Hedmark. Send med kooridinater som hint, og nærhet til hintet gis tung vekt i utvelgelsen.
 
