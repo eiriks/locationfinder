@@ -1,21 +1,59 @@
 # LocationFinder
-```python LocationFinder.py -d```
-Et stygt hack for å trekke stedsnavn ut av tekster. Sånn ca. Bruker ordlister som startpunkter og aksepterer også ord som er steder (er oppførst i Sentralt Stedsnavns Register, [SSR](http://kartverket.no/Kart/Stedsnavn/)) som er innen rimelig avstand fra allerede aksepterte steder.
+LocationFinder er (enda et) forsøk på å stedfeste stedsnavn i tekster. Tekst inn, stedsnavn med koordinater ut. En tidligere versjon av LocationFinder feilet, av mange grunner. Å tolke steder fra tekst er ikke lett.
 
-# Noen raske tanker om hvorfor dette er en dårlig idé
-* Å bruke OBT slik gjør at scriptet blir treigt. Mye I/O
-* Kandidatene fra OBT er rimelige nok, men jeg mangler en fornuftig måte å luke ut mennesker som deler navn med et sted. Folk heter ´Eide´ og ´Nygård´, ´Solberg´ og ´Hauge´ - og det gjør halve Norges veikryss og bærbusker også. Det er 1815 rader med navn ´Stormyra´ i basen. Hauge, Åsen, Storhaugen, Langmyra, Moen, Holmen, Dalen - alle har hundrevis (>600) av steder med samme navn. Og alle disse navnene er også vanlige etternavn. Det er et mareritt.
-(´SELECT *, count(*) as c FROM SSR GROUP BY for_snavn order by c desc;´)
-* Å bruke lister som startsted, og avstand som neste kriterium har noe for seg, men antall feil (falske positive) øver alt for rask i forhold til nye riktige steder.
-* Enten er SSR for liberalt og fantasifullt, eller så har jeg misforstått hvordan det er bygget opp. Gir meg lat/lons som ser ut som de er trillet som terninger.
+I motsetning til tidligere forsøker jeg ikke selv i identifisere stedsnavn. Det overlater jeg til [polyglot](https://github.com/aboSamoor/polyglot), og fokuserer deretter på å finne ut av hvor disse potensielle (polyglot er heller ikke perfekt) stedene befinner seg.
 
-Jeg lurer på om det er like greit å legge denne ballen død, om ikke annet enn for en stund. Kanskje det er en bedre idé å bygge noe på [Nominatim](http://wiki.openstreetmap.org/wiki/Nominatim) i en lokal instalasjon. Jeg må kunne si ting som "finn meg en Moen på sørlandet i nærheten av Risør", og ikke bare et sted som heter Moen - de er det 747 av, og det er 20 bare i Aust-Agder ganske nært Risør. At koden også er et kaos får bare være.
+## Send tekst, få ut steder med koordinater
+```python
+from locationfinder import LocationFinder
+lf = LocationFinder()
+
+# .get_locations tar tekst inn og gir deg steder tilbake
+lf.get_locations("Jeg vil helst være i Risør om sommeren.")
+# sted, (lengde, bredde), kommune
+[('Risør', (58.719192, 9.223242), 'Risør')]
+
+tekst = """Jeg vil helst være i Risør om sommeren. Eller kanskje Arendal. Eller fjellene i Hemsedal. Eller en DNT-hytte i Jotunheimen. Det er digg å være i Norge om sommeren."""
+lf.get_locations(tekst)
+[('Arendal', (58.461214, 8.766947), 'Arendal'),
+ ('Risør', (58.719192, 9.223242), 'Risør'),
+ ('Jotunheimen', (61.605003, 8.477503), 'Lom'),
+ ('Norge', (62.0, 10.0), 'NA'),
+ ('Hemsedal', (60.8501, 8.616381), 'Hemsedal')]
+```
+
+## Disambiguering
+Mange steder i Norge deler stedsnavn. Selv kommuner har samme navn! Bø i Telemark, Bø i Nordland. Os i Hordaland, Os i Hedmark. Og ikke engang begynn med hvor mange Lia, Sandvik, Grunnerund og Storemyr vi har! Uten kontekst er det umulig å vite hvor disse er. Men vi kan prioritere gjettingen, og guide prioriteringen. De er to måter dette gjøres på.
+1. [Bolstads](http://www.erikbolstad.no/geo/) prioritering. Dette er den samme som yr.no bruker (i alle fall samme utgangspunkt). Oppslag gjøres i geonames og SSR, og rankes etter Bolstads tabel. Større steder prioriteres over små, kommuner over tettsteder, tettsteder over navn på fjell og vidder etc.
+2. Hint. Sitter du i Bergen og snakker om Os, så snakker du mest sansynlig om Os i Hordaland og ikke om Os i Hedmark. Send med kooridinater som hint, og nærhet til hintet gis tung vekt i utvelgelsen.
 
 
-## OBT
-Tar det initielle settet med ord som kan være steder fra [Oslo-Bergen-Taggeren](https://github.com/noklesta/The-Oslo-Bergen-Tagger)
+```python
+# .disambiguate_places tar en liste inn og returnerer en liste med beste treff i SSR
+ lf.disambiguate_places(["Bergen", "Kolbotn", "Os"])
+ [('Kolbotn', (59.810561, 10.803892), 'Oppegård'),
+  ('Bergen', (60.398258, 5.329072), 'Bergen'),
+  ('Os', (62.496489, 11.223308), 'Os')]
+ # treffene i SSR rankes etter Bolstads (yr.no) prioritet
 
-OBT er la jeg til min $PATH (i .bash_profile) og i folderen med OBT ligger også _tag_bm_cmd.sh_ som inneholder følgende:
+# du kan sende med et hint. Sitter vi i Bergen forventer vi Os i Hordaland, ikke Os i Hedmark
+ lf.disambiguate_places(["Bergen", "Kolbotn", "Os"], hint_location=(60.391263, 5.322054))
+ [('Kolbotn', (60.406044, 5.436178), 'Oppegård'),
+  ('Bergen', (60.398258, 5.329072), 'Bergen'),
+  ('Os', (60.188353, 5.469786), 'Os')]
+# med hintet rundes avstand fra hint til treff til nærmeste 10km og deretter velges beste treff via prioritet - legge merke til at Vi nå fikk Os på 60.1, 5.4, altså på vestlandet.
+```
+    >>> from locationfinder import LocationFinder
+    >>> lf = LocationFinder()
+    >>> lf.disambiguate_places(["Risør"])
+    [('Risør', (58.719192, 9.223242), 'Risør')]
+    tekst = """Jeg vil helst være i Risør om sommeren. Eller kanskje Arendal. Eller fjellene i Hemsedal. Eller en DNT-hytte i Jotunheimen. Det er digg å være i Norge om sommeren."""
+    >>>lf.get_locations(tekst)
+[('Risør', (58.719192, 9.223242), 'Risør'), ('Arendal', (58.461214, 8.766947), 'Arendal'), ('Hemsedal', (60.8501, 8.616381), 'Hemsedal'), ('Jotunheimen', (61.605003, 8.477503), 'Lom')]
+
+
+## Hints
+
 ```
 echo $1 | $OBT/bin/mtag -wxml | vislcg3 --codepage-all latin1 --codepage-input \
     utf-8 --grammar $OBT/cg/bm_morf-prestat.cg --codepage-output utf-8 --no-pass-origin --show-end-tags | \
@@ -29,24 +67,3 @@ Inneholder
     settings['user'] = 'mySQL_brukernavn'
     settings['password'] = 'mySQL_passord'
 ```
-
-## terskel for avstand
-Ved bare å bruke lister, skårer vi ca 70%. Vi finner 70% av de stedene som omtales. Ved å øke radiusen for _rimelig avstand_ får vi med noen flere, men også mange flere feil. Radiusen er hardkodet til 15km pr nå.
-![Større avstand gir flere falske positive](http://stavelin.com/uib/LocationFinder_dist_v_errors.png "Antall feil kommer raskere enn antall rette, ved å øke radiusen for hva _rimelig nært_ er")
-
-
-## 100random_urls.txt
-Er min "gullstandard" for å teste mot. Først og fremst lærer jeg at 1) dey ikke alltid er lett å bestemme seg for hva et sted er og 2) at det vi ser på webben i dag ikke er det samme som jeg scrapet i 2013. Precision/recall-tall kan neppe bli en perfekt måling av dette, kanskje inter-coder-reliabillity er aktuelt?
-
-# H1 Dette er bare markdown eksempler
-## H2 for min egen del
-### H3
-#### H4
-##### H5
-###### H6
-Emphasis, aka italics, with *asterisks* or _underscores_.
-Strong emphasis, aka bold, with **asterisks** or __underscores__.
-Combined emphasis with **asterisks and _underscores_**.
-Strikethrough uses two tildes. ~~Scratch this.~~
-[I'm an inline-style link](https://www.google.com)
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
