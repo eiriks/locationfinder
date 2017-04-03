@@ -3,14 +3,18 @@ from polyglot.text import Text
 from collections import Counter
 from geopy.distance import vincenty
 import sqlite3 as lite
+import os.path
+
+package_dir = os.path.abspath(os.path.dirname(__file__))
+database_path = os.path.join(package_dir, 'steder.db')
 
 class LocationFinder(object):
     """docstring for LocationFinder."""
-    def __init__(self, arg):
+    def __init__(self):
         super(LocationFinder, self).__init__()
         #self.arg = arg
-        self.con = lite.connect('steder.db')
-        self.cur = con.cursor()
+        self.con = lite.connect(database_path)
+        self.cur = self.con.cursor()
 
     def get_locations(self, text):
         places = self.disambiguate_places(self.from_text_to_places(text))
