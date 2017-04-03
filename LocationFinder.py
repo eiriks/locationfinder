@@ -10,7 +10,7 @@ database_path = os.path.join(package_dir, 'steder.db')
 
 class LocationFinder(object):
     """docstring for LocationFinder."""
-    def __init__(self, arg):
+    def __init__(self):
         super(LocationFinder, self).__init__()
         #self.arg = arg
         self.con = lite.connect(database_path)
