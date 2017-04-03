@@ -49,7 +49,7 @@ Mange steder i Norge deler stedsnavn. Selv kommuner har samme navn! Bø i Telema
 ## Entitetsgjennkjenning
 Å plukke ut stedsnavn fra tekster er en del entitetgjenkjenning [Named-entity recognition](https://en.wikipedia.org/wiki/Named-entity_recognition), der de to typiske andre kategoriene er personer og organisasjoner. Jeg vil bare ha steder, og støtter meg her på at [polyglot](https://github.com/aboSamoor/polyglot) (som er [neurale net](http://www.cs.cmu.edu/~ytsvetko/papers/phonology-naacl16.pdf)) er bedre enn noe jeg selv koker opp.
 
-polyglot støtter en bråte språk, hvorav norsk bare er et. Den ser ut til å fint identifisere norsk tekst som norsk, så vi trenger stort sett ikke oppgi språk, men vi kan.
+polyglot støtter en bråte språk, hvorav norsk bare er et. Den ser ut til å fint identifisere norsk tekst som norsk, så vi trenger stort sett ikke oppgi språk, men vi kan. Jeg har pakket polyglot inn i `.from_text_to_places()` der jeg plukker ut _kun_ steder.
 
 ```python
 lf.from_text_to_places(tekst, pg_help_lang='no')
