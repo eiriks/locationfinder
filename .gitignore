@@ -1,7 +1,3 @@
-
-# Created by https://www.gitignore.io/api/python
-
-### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -97,15 +93,13 @@ ENV/
 # Rope project settings
 .ropeproject
 
-# End of https://www.gitignore.io/api/python
-
-*.swp
+*.dump
 .DS_Store
-*.profile
+*.swp
 steder.db
-steder.kml
-100random_urls2.txt
+*.ipynb
 /mangfold_testdata/*
+*.sql
+*.kml
 *.dat
-mysql_settings.py
-jupyter_testing.ipynb
+*.profile
