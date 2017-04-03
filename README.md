@@ -45,6 +45,7 @@ Mange steder i Norge deler stedsnavn. Selv kommuner har samme navn! Bø i Telema
 # med hintet rundes avstand fra hint til treff til nærmeste 10km og deretter velges beste treff via prioritet - legge merke til at Vi nå fikk Os på 60.1, 5.4, altså på vestlandet.
 ```
 
+
 ## Entitetsgjennkjenning
 Å plukke ut stedsnavn fra tekster er en del entitetgjenkjenning [Named-entity recognition](https://en.wikipedia.org/wiki/Named-entity_recognition), der de to typiske andre kategoriene er personer og organisasjoner. Jeg vil bare ha steder, og støtter meg her på at [polyglot](https://github.com/aboSamoor/polyglot) (som er [neurale net](http://www.cs.cmu.edu/~ytsvetko/papers/phonology-naacl16.pdf)) er bedre enn noe jeg selv koker opp.
 
@@ -67,4 +68,10 @@ lf.disambiguate_places(lf.from_text_to_places(tekst))
  ('Norge', (62.0, 10.0), 'NA'),
  ('Hemsedal', (60.8501, 8.616381), 'Hemsedal')]
 
+ lf.get_locations(tekst)
+ [('Arendal', (58.461214, 8.766947), 'Arendal'),
+ ('Risør', (58.719192, 9.223242), 'Risør'),
+ ('Jotunheimen', (61.605003, 8.477503), 'Lom'),
+ ('Norge', (62.0, 10.0), 'NA'),
+ ('Hemsedal', (60.8501, 8.616381), 'Hemsedal')]
 ```
