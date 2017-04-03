@@ -13,7 +13,8 @@ lf.get_locations("Jeg vil helst være i Risør om sommeren.")
 # sted, (lengde, bredde), kommune
 [('Risør', (58.719192, 9.223242), 'Risør')]
 
-tekst = """Jeg vil helst være i Risør om sommeren. Eller kanskje Arendal. Eller fjellene i Hemsedal. Eller en DNT-hytte i Jotunheimen. Det er digg å være i Norge om sommeren."""
+tekst = """Jeg vil helst være i Risør om sommeren. Eller kanskje Arendal. Eller fjellene i Hemsedal.
+Eller en DNT-hytte i Jotunheimen. Det er digg å være i Norge om sommeren."""
 lf.get_locations(tekst)
 [('Arendal', (58.461214, 8.766947), 'Arendal'),
  ('Risør', (58.719192, 9.223242), 'Risør'),
@@ -43,27 +44,27 @@ Mange steder i Norge deler stedsnavn. Selv kommuner har samme navn! Bø i Telema
   ('Os', (60.188353, 5.469786), 'Os')]
 # med hintet rundes avstand fra hint til treff til nærmeste 10km og deretter velges beste treff via prioritet - legge merke til at Vi nå fikk Os på 60.1, 5.4, altså på vestlandet.
 ```
-    >>> from locationfinder import LocationFinder
-    >>> lf = LocationFinder()
-    >>> lf.disambiguate_places(["Risør"])
-    [('Risør', (58.719192, 9.223242), 'Risør')]
-    tekst = """Jeg vil helst være i Risør om sommeren. Eller kanskje Arendal. Eller fjellene i Hemsedal. Eller en DNT-hytte i Jotunheimen. Det er digg å være i Norge om sommeren."""
-    >>>lf.get_locations(tekst)
-[('Risør', (58.719192, 9.223242), 'Risør'), ('Arendal', (58.461214, 8.766947), 'Arendal'), ('Hemsedal', (60.8501, 8.616381), 'Hemsedal'), ('Jotunheimen', (61.605003, 8.477503), 'Lom')]
 
+## Entitetsgjennkjenning
+Å plukke ut stedsnavn fra tekster er en del entitetgjenkjenning [Named-entity recognition](https://en.wikipedia.org/wiki/Named-entity_recognition), der de to typiske andre kategoriene er personer og organisasjoner. Jeg vil bare ha steder, og støtter meg her på at [polyglot](https://github.com/aboSamoor/polyglot) (som er [neurale net](http://www.cs.cmu.edu/~ytsvetko/papers/phonology-naacl16.pdf)) er bedre enn noe jeg selv koker opp.
 
-## Hints
+polyglot støtter en bråte språk, hvorav norsk bare er et. Den ser ut til å fint identifisere norsk tekst som norsk, så vi trenger stort sett ikke oppgi språk, men vi kan.
 
+```python
+lf.from_text_to_places(tekst, pg_help_lang='no')
+['Risør', 'Arendal', 'Hemsedal', 'Jotunheimen', 'Norge']
 ```
-echo $1 | $OBT/bin/mtag -wxml | vislcg3 --codepage-all latin1 --codepage-input \
-    utf-8 --grammar $OBT/cg/bm_morf-prestat.cg --codepage-output utf-8 --no-pass-origin --show-end-tags | \
-    $OBT/OBT-Stat/bin/run_obt_stat.rb | perl -ne 'print if /\S/'
-```
+Du kan sende inn hint om [andre språk](http://polyglot.readthedocs.io/en/latest/NamedEntityRecognition.html) (men forvent da ikke så mange treff i SSR?)
 
-## mysql_settings.py
-Inneholder
-```
-    settings = {}
-    settings['user'] = 'mySQL_brukernavn'
-    settings['password'] = 'mySQL_passord'
+## get_locations = from_text_to_places + disambiguate_places
+De to funksjonene i LocationFinder (hent steder med polyglot aka `.from_text_to_places()` og `disambiguate_places()`) blir til sammen `get_locations()`.
+
+```python
+lf.disambiguate_places(lf.from_text_to_places(tekst))
+[('Arendal', (58.461214, 8.766947), 'Arendal'),
+ ('Risør', (58.719192, 9.223242), 'Risør'),
+ ('Jotunheimen', (61.605003, 8.477503), 'Lom'),
+ ('Norge', (62.0, 10.0), 'NA'),
+ ('Hemsedal', (60.8501, 8.616381), 'Hemsedal')]
+
 ```
