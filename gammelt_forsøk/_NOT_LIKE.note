@@ -1,0 +1,5 @@
+ELECT * FROM SSR s, bolstads_prioritet b 
+WHERE (for_snavn LIKE 'Bergen' OR enh_snavn LIKE 'Bergen')
+AND skr_snskrstat IN ('V', 'S', 'G', 'P')
+AND s.enh_navntype = b.Nr
+ORDER BY Prioritet ASC; */

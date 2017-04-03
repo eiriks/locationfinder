@@ -1,0 +1,71 @@
+
+
+/*
+SELECT latitude, longitude, country, * 
+FROM geoname g, bolstads_geoname_prioritet b
+WHERE g.fcode = b.Kode 
+AND 
+g.name = 'Liverpool' OR g.asciiname = 'Liverpool'
+ORDER BY b.Prioritet, g.population DESC;
+*/
+
+
+SELECT s.lat, s.long, for_snavn, Namnetype, Prioritet,  k.Norsk 
+ FROM SSR s, bolstads_prioritet p, bolstads_kommunesenter k
+                WHERE (s.for_snavn = 'Os' OR s.enh_snavn = 'Os')
+                AND s.skr_snskrstat IN ('V', 'S', 'G', 'P')
+                AND s.enh_navntype = p.Nr
+                AND s.enh_komm = k.Kommunenummer
+                ORDER BY Prioritet ASC
+
+
+SELECT s.lat, s.long, for_snavn, Namnetype, Prioritet,  k.Norsk 
+ FROM SSR s, bolstads_prioritet p LEFT JOIN bolstads_kommunesenter k 
+ ON s.enh_navntype = p.Nr 
+ WHERE (s.for_snavn = 'Os' OR s.enh_snavn = 'Os')
+ AND s.skr_snskrstat IN ('V', 'S', 'G', 'P')
+ ORDER BY Prioritet ASC
+
+
+Denne:
+        sql_ssr = """SELECT s.lat, s.long, for_snavn, Namnetype, Prioritet,  k.Norsk 
+                FROM SSR s, bolstads_prioritet p, bolstads_kommunesenter k
+                WHERE (s.for_snavn = ? OR s.enh_snavn = ?)
+                AND s.skr_snskrstat IN ('V', 'S', 'G', 'P')
+                AND s.enh_navntype = p.Nr
+                AND s.enh_komm = k.Kommunenummer
+                ORDER BY Prioritet ASC;
+                """
+Ble til denne:
+	  sql_ssr = """SELECT s.lat, s.long, for_snavn, Namnetype, Prioritet, k.Norsk, *
+                 FROM SSR s
+                 LEFT JOIN bolstads_prioritet p 
+                 ON s.enh_navntype = p.Nr 
+                 LEFT JOIN bolstads_kommunesenter k
+                 ON s.enh_komm = k.Kommunenummer
+                 WHERE (s.for_snavn = ? OR s.enh_snavn = ?)
+                 AND s.skr_snskrstat IN ('V', 'S', 'G', 'P')
+                 ORDER BY Prioritet ASC;"""
+Denne:
+        sql_geonames = """SELECT latitude, longitude, * FROM geoname g, bolstads_geoname_prioritet b
+        WHERE (g.name = ? or g.asciiname = ?)
+        AND  g.fcode = b.Kode ORDER BY b.Prioritet, g.population DESC;"""
+        
+Ble til denne:
+        sql_geonames = """SELECT latitude, longitude, country, * 
+            FROM geoname g
+            LEFT JOIN bolstads_geoname_prioritet b on  g.fcode = b.Kode
+            WHERE  g.name = 'Liverpool' OR g.asciiname = 'Liverpool' 
+            ORDER BY b.Prioritet, g.population DESC;"""
+
+Ble til denne:
+SELECT s.lat, s.long, for_snavn, Namnetype, Prioritet, *
+                 FROM SSR s, bolstads_kommunesenter k, bolstads_prioritet p
+                 WHERE (s.for_snavn = "Stolen" OR s.enh_snavn = "Stolen")
+                 AND s.skr_snskrstat IN ('V', 'S', 'G', 'P')
+                 AND s.enh_komm = k.Kommunenummer
+				 AND s.enh_navntype = p.Nr 
+                 ORDER BY Prioritet ASC;
+
+LEFT JOIN tillater "Hull". Altså at det er noe i den ene tabellen, men ikke i den andre. Det funker ikke for meg.
+

@@ -1,0 +1,271 @@
+TTema,Nr,Namnetype,Merknad,Nynorsk,Bokmål,Kvensk,Finsk,Engelsk,Prioritet
+2900,1,Berg,Mindre fjell,Berg,Berg,Jyppyrä,kukkula,Small mountain,75
+2900,2,Fjell,Stort fjell,Fjell,Fjell,Vaara,vuori,Mountain,70
+2900,3,Fjellområde,"Stort fjellområde: Rondane, Saltfjellet, Lyseheiane Se også SOSI kapitel: 
+Landskap",Fjellområde,Fjellområde,Tunturiala,vuoristo,Mountain area,50
+2900,4,Hei,"Berglendt, høyere beliggende område med beitemark",Hei,Hei,Marasto,ylämaa,Heath,50
+2900,5,Høyde,Mindre terrengform som ikke vurderes som fjell,Høgd,Høyde,Kumpu,ylänkö,Height,90
+2900,6,Ås,"Langstrakt, vanligvis skogkledt høydedrag.",Ås,Ås,Harju,mäki,Hill,80
+2900,7,Rygg,Langstrakt terrengform,Rygg,Rygg,Vaaransölkä,harja,Ridge,90
+2900,8,Haug,Liten markant terrengform,Haug,Haug,Tieva,pieni kukkula,Small hill,90
+2900,9,Bakke,Skråning,Bakke,Bakke,Luokka,mäki,Slope,90
+2900,10,Li,Vanligvis skogkledt skrånende terreng,Li,Li,Rinnet,vuorenrinne,Hillside,90
+2900,11,Stup,"Loddrett eller svært bratt, fallende terreng",Stup,Stup,Henkopahta,jyrkänne,Cliff,90
+2900,12,Vidde,"Høyere liggende større område uten skog med lave terrengvariasjoner 
+innenfor området. F.eks. Valdresflyi Se også SOSI kapitel: Landskap",Vidde,Vidde,Tunturi,ylätasanko,Mountain plateau,50
+2900,13,Slette,"Åpent, flatt, ikke skogbevokst område",Slette,Slette,Aukkee,tasanko,Plains,90
+2900,14,Mo,"Flatt område, vanligvis skogkledt",Mo,Mo,Kangas,nummi,Moor,90
+2900,15,Dalføre,"Stor dal: Gudbrandsdalen, Namdalen, Setesdal, Valdres Se også 
+SOSI-kapittel: Landskap",Dalføre,Dalføre,Vankka / Vuoma,suuri laakso,Long valley,50
+2900,16,Dal,Mellomstor eller liten dal,Dal,Dal,Kuru,laakso,Valley,70
+2900,17,Botn,Dalende,Botn,Botn,Vuomanpohja,laaksonpohja,Cirque,90
+2900,18,Skar,Markant senkning i fjell,Skar,Skar,Autsi,sola,Pass,80
+2900,19,Juv,"Kløftlignende dal, canyon",Juv,Juv,Korsa,kanjoni,Gorge,80
+2900,20,Søkk,"Mindre markant, begrenset fordypning",Søkk,Søkk,Kuppa,ontto,Hollow,90
+2900,21,Stein,F.eks. flyttstein i fjellet,Stein,Stein,Kivi,"kivi, järkäle",Stone,90
+2900,22,Heller,"Steinhule, steinsatt overnattingssted",Heller,Heller,Pahtaloma,kiviluola,Rock shelter,90
+2900,211,Topp (fjelltopp/tind),Øverste fjelltopp,Fjelltopp,Fjelltopp,Vaaranlaki,vuorenhuippu,Mountain peak,70
+2900,212,Hylle (hjell),Flatt område i fjellside,Hylle (hjell),Hylle (hjell),Lohta,vuorenseinämä,Mountain shelf,90
+2900,213,Terrengdetalj,"Alle typer små naturdetaljer. f.eks. sprekker, hulveier, sand- / stein- / 
+grusflater, etc. Innsjøer og landskap",Annan terrengdetalj,Annen terrengdetalj,Muita detaljiita maisemassa,muu maastoominaisuus,Terrain detail,90
+2900,239,Fjellside,Vanligvis åpent skrånende terreng i fjellet,Fjellside,Fjellside,Vaarankylki,vuorenreuna,Mountain face,75
+2900,244,Senkning,"Flat forsenkning, dalsenkning",Senkning,Senkning,Lakso,vajoama,Depression,90
+2900,245,Fjellkant (aksel),"Skulder, «nese?, «bryn»",Fjellkant (aksel),Fjellkant (aksel),Vaaranolka,vuorenrinne,Mountain shoulder,90
+2900,246,Skogområde,"Stort skogområde: Nordmarka, Bymarka, Finnskogen Se også SOSI-kapittel: 
+Landskap",Skogområde,Skogområde,Outamaa,metsäalue,Forest area,50
+2900,247,Landskapsområde,"Stort landskapsområde: Dalane, Jæren, Romerike, Grenland, Salten, Varanger 
+Se også SOSI-kapittel: Landskap",Landskapsområde,Landskapsområde,Lääni,maaseutu,Area,50
+2900,260,Grotte,Naturlig fjellgrotte f.eks. Grønnligrotta (Rana),Grotte,Grotte,Holo,luola,Cave,90
+3000,80,Fjord,Arm av havet inn i fastlandet,Fjord,Fjord,Vuono,vuono,Fiord,60
+3000,81,Havområde,"Store områder: Barentshavet Nordsjøen, Atlanterhavet",Havområde,Havområde,Aapa,merialue,Sea,50
+3000,82,Sund i sjø,Innsnevret område mellom øyer eller fastland,Sund i sjø,Sund i sjø,Nuora,meren salmi,Strait at sea,70
+3000,83,Vik i sjø,"Kil, bukt",Vik i sjø,Vik i sjø,Koppa,merenlahti,Inlet at sea,70
+3000,84,Øy i sjø,Tørt landområde i saltvann atskilt fra fastlandet,Øy i sjø,Øy i sjø,Saari meressä,meressä oleva saari,Island in sea,70
+3000,85,Holme i sjø,Liten øy / skjær i sjø,Holme i sjø,Holme i sjø,Meressä pikku saarinen,luoto merellä,Islet in sea,80
+3000,86,Halvøy i sjø,Større nes med smalt eid mot fastland,Halvøy i sjø,Halvøy i sjø,Niemimaa,meressä oleva niemimaa,Peninsula at sea,80
+3000,87,Nes i sjø,Landområde stikkende ut i saltvann,Nes i sjø,Nes i sjø,Niemi,pieni niemimaa,Small peninsula,80
+3000,88,Eid i sjø,Lavt parti i terrenget mellom to sjøkanter,Eid i sjø,Eid i sjø,Muotka,meren kannas,Small isthmus at sea,80
+3000,89,Strand i sjø,"Sand-, grus- eller steindekket område i sjøkanten",Strand i sjø,Strand i sjø,Karikko,merenranta,Beach at sea,70
+3000,90,Skjær i sjø,Stein i vannflaten.,Skjer i sjø,Skjær i sjø,Laassa,meressä oleva kivi,Rock in sea,90
+3000,91,Båe i sjø,Stein under vannflaten.,Båe i sjø,Båe i sjø,Poto,vajonnut kivi meressä,Sunken rock in sea,90
+3000,92,Grunne i sjø,Forhøyning på bunnen som skiller seg vesentlig fra høyden på bunnen omkring,Grunne i sjø,Grunne i sjø,Matala,karikko merellä,Shoal in sea,90
+3000,93,Renne,Undersjøisk dal,Renne,Renne,Hauta,maanalainen laakso,Trench,90
+3000,94,Banke i sjø,"Flatt, større undervannsområde",Banke i sjø,Banke i sjø,Pankki,"törmä, rantatörmä",Seabank,90
+3000,95,Bakke i sjø,Skrånende sjøbunn,Bakke i sjø,Bakke i sjø,Pakki,merenpohjassa oleva kumpu/kohoama,Slope in sea bottom,90
+3000,96,Søkk i sjø,Stor eller liten grop på sjøbunnen,Søkk i sjø,Søkk i sjø,Kuoppa meressä,merenpohjassa oleva aukko/kuoppa,Hollow in sea bottom,90
+3000,97,Dyp (havdyp),Område mer enn 200-300 meter under havflaten,Havdjupn,Havdyp,Syvvyys,merensyvyys,Depth,70
+3000,98,Rygg i sjø,Undersjøisk ?ås?,Rygg i sjø,Rygg i sjø,Sölkä,vedenalainen harjanne,Underwater ridge,90
+3000,99,Egg,Undersjøisk kant mot havdyp,Egg,Egg,Syvänsyrjä,vedenalainen jyrkänne,Underwater cliff,90
+3000,215,Våg,"Fjordarm, større vik",Våg,Våg,Lahti,lahti,Bay,70
+3000,216,Øygruppe i sjø,2 eller flere øyer i saltvann f.eks. Hvaler og Lofoten,Øygruppe i sjø,Øygruppe i sjø,Saaret,saariryhmä meressä,Island group in sea,70
+3000,217,Klakk,Spiss grunne. (Trøndersk / Nordnorsk uttrykk),Klakk,Klakk,Soro,meressä oleva huippu,Pinnacle in sea,90
+3000,241,Fjordmunning,Område «ytterst» i en fjord,Fjordmunning,Fjordmunning,Vuononsuu,vuononsuu,Mouth of fiord,70
+3000,255,Sjøstykke,"Del av sjøen, vanligvis innaskjærs eller i kystnære farvann f.eks. Folda, 
+Hustadvika",Sjøstykke,Sjøstykke,Meren osa,meren osa,Sea area,50
+3000,256,Fiskeplass,"Fiskested, fiskeméd i sjø.",Fiskeplass,Fiskeplass,Pyytöpaikka,kalastusalue,Fishing area,90
+3000,265,Holmegruppe i sjø,Flere små skjær i sjø,Holmegruppe i sjø,Holmegruppe i sjø,Meressä pikku saariset,luotoryhmä meressä,Islet group in sea,80
+3010,52,Skjær,Stein i vannflaten,Skjer,Skjær,Karkko,joessa oleva kivi,Skerry,90
+3023,273,Stang,"Offisiell og privat jernstang langs kysten og i innlandet, fast",Stong,Stang,Tanko,paalu,Pole,90
+3023,274,Stake,"Offisiell og privat stake langs kysten og i innlandet, flytende",Stake,Stake,Tupuli,poiju,Buoy,90
+3023,276,Båke,"Offisiell og privat båke langs kysten og i innlandet, fast.",Båke,Båke,Merimerkki / Pooki,"merkkituli, äänimajakka",Beacon,90
+3023,277,Overett,"Offisiell og privat. To stenger med / uten lys overett langs kysten og i 
+innlandet, faste.",Overett,Overett,Suuntamerkit,kulkumerkit,Leading marks,90
+3030,275,Lysbøye,"Offisiell og privat lysbøye langs kysten og i innlandet, flytende",Lysbøye,Lysbøye,Näkötupuli,valaistu poiju,Light buoy,90
+3100,30,Innsjø,"Stort vann: Altevatnet, Femunden, Mjøsa, Nisser",Innsjø,Innsjø,Järvi,järvi,Large lake,70
+3100,31,Vann,Middels stort vann,Vatn,Vann,Järvi,järvi,Lake,65
+3100,32,Tjern,Lite vann,Tjørn,Tjern,Lompolo,lampi,Pond,90
+3100,33,Pytt,"Liten dam, myrpytt",Pytt,Pytt,Lantto,"pieni lampi, lätäkkö",Small pond,90
+3100,34,Sund,Innsnevret område i vann eller vassdrag,Sund,Sund,Salmi,salmi,Strait,70
+3100,35,Vik,"Kil, bukt i vann eller vassdrag.",Vik,Vik,Vuoppii,lahti,Inlet,70
+3100,44,Øy,Tørt landområde i ferskvann atskilt fra fastlandet,Øy,Øy,Saari,saari,Island,70
+3100,45,Holme,Liten øy i ferskvann,Holme,Holme,Holmi / Saari,saarelma,Islet,90
+3100,46,Halvøy,Større nes i ferskvann med smalt eide mot fastland,Halvøy,Halvøy,Niemi,niemimaa,Peninsula,70
+3100,47,Nes,Landområde stikkende ut i ferskvann,Nes,Nes,Niemi,niemi,Headland,70
+3100,48,Eid,Lavt / smalt parti mellom to vannkanter; elver eller vann,Eid,Eid,Muotka,kannas,Small isthmus,70
+3100,49,Strand,"Sand-, grus- eller steindekket område i vannkanten",Strand,Strand,Kari / Kariranta,ranta,Beach,70
+3100,53,Båe,Stein under vannflaten,Båe,Båe,Poto,vedenpinnan alla oleva kivi,Sunken rock,90
+3100,54,Grunne,Lite område under vann,Grunne,Grunne,Matala,matalikko,Shoal,90
+3100,55,Banke,"Flatt, større undervannsområde",Banke,Banke,Pankki,törmä,Bank,90
+3100,56,Vanndetalj,Alle typer : Notér forklaring i merknadsfeltet,Detalj i eller ved vatn,Detalj i eller ved vann,Vesityyppi,veden ominaisuus,Water detail,90
+3100,214,Øygruppe,2 eller flere øyer i ferskvann,Øygruppe,Øygruppe,Saaret,saariryhmä,Island group,70
+3100,242,Nes ved elver,"Landet mellom to møtende elver. Vanligvis kun brukt i samiske områder. 
+Stedsnavnets skrivemåte skal IKKE avgjøre om navnet skal gis denne koden, 
+men KUN lokalitetens størrelse eller ?fasong?.",Nes ved elvar,Nes ved elver,Skaiti / Kielinen,jokienvälinen niemi,Headland between rivers,70
+3100,257,Del av innsjø,Mindre deler av store innsjøer F.eks. Steinsfjorden i Tyrifjorden,Del av innsjø,Del av innsjø,Järven osa,järven osa,Part of a lake,90
+3100,261,Gruppe av vann,Flere middels store vann,Fleire vatn,Gruppe av vann,Järvet,järviryhmä,Group of lakes,90
+3100,262,Gruppe av tjern,Flere små vann,Fleire tjern,Gruppe av tjern,Lompolot,lampiryhmä,Group of ponds,90
+3200,36,Elv,Rennende vann i naturlig vannvei. Generelt ?bredere? enn 3 meter,Elv,Elv,Joki / Eno,joki,River,70
+3200,37,Bekk,Rennende vann i naturlig vannvei. Generelt ?smalere? enn 3 meter,Bekk,Bekk,Oja,virta,Stream,90
+3200,38,Grøft,Rennende vann der forløpet er menneskeskapt f.eks. dreneringsgrøfter i myr,Grøft,Grøft,Kravi,puro,Ditch,90
+3200,41,Os,"Innløp eller utløp av elv eller bekk i innsjø / vann / tjern eller sjø 
+(saltvann)",Os,Os,Suu,joen suu,Rivermouth,90
+3200,42,Høl,Dyp elvebunn under foss eller ved ende av stryk,Høl,Høl,Jorma,suvanto,Riverpool,90
+3200,43,Lone,Nesten stillestående vik i elv eller bekk,Lon,Lon,Pudas,"lahti, lahdelma",Quiet inlet,90
+3200,159,Kanal,Utgravd ?vannveg? i sjø og ferskvann,Kanal,Kanal,Kanaali,kanaali,Canal,60
+3200,243,Kilde,"Oppkomme, olle, vannkilde. Kildeutspring. Benyttes for å angi stedet hvor 
+grunnvannet kommer i dagen",Kjelde,Kilde,Kalttii,lähde,Spring,90
+3220,39,Foss,Vann i tilnærmet fritt fall,Foss,Foss,Kurkkii,vesiputous,Waterfall,70
+3220,40,Stryk,"Parti der vannet går i stryk og skiller seg tydelig fra resten av elv eller 
+bekk",Stryk,Stryk,Koski / Niva,koski,Rapids,70
+3311,50,Isbre,"Større sammenhengende snø- eller isområde som ikke smelter i løpet av 
+sommeren. F.eks. Svartisen eller Folgefonna",Isbre,Isbre,Jäätikkö,jäätikkö,Glacier,60
+3311,51,Fonn,Liten snø- eller isflate,Fonn,Fonn,Jääteli,jäälautta,Snowdrift,90
+4000,188,Soneinndeling til havs,"Fiskerisone, havrettssone, etc. (Notér type i merknadsfelt)",Soneinndeling til havs,Soneinndeling til havs,Pyyytöalat merelä,merialue,Zone at sea,70
+4000,253,Annen adm. Inndeling,"Landsdel, havnedistrikt, politidistrikt bispedømme, prestegjeld, 
+skolekrets, valgkrets, postområde, etc. (Notér type i merknadsfelt)",Anna adm. inndeling,Annen adm. Inndeling,Muu administratiivinen jako,muu hallinnollinen jaottelu,Other administrative division,50
+4000,258,Grensemerke,"Off. godkjent grensemerke (generelt): Varde, tre, stein, bolt, kors etc",Grensemerke,Grensemerke,Rajamerkki,"rajamerkki, rajapyykki",Boundary marker,70
+4001,180,Nasjon,Selvstendig land (Offisielt navn),Land,Land,Maa,maa,Country,99
+4002,181,Fylke,(Offisielt navn),Fylke,Fylke,Fylkki,maa,County,31
+4003,182,Kommune,(Offisielt navn),Kommune,Kommune,Komuuni,kunta,Municipality,20
+4005,184,Grunnkrets,Se også 253 annen adm. inndeling,Grunnkrins,Grunnkrets,Komuuniala / Komuunin osa,kunta-alue,Municipal district,60
+4007,268,Adm. by,Alle steder hvor kommunen har vedtatt bystatus,By,By,Kaupunki,kaupunki,Town,25
+4007,270,Adm. tettsted,Statistisk sentralbyrås spesifikasjon.,Tettstad,Tettsted,Kylä,"kylä, taajama",Village,60
+4011,170,Eiendommer,Matrikulert eiendom,Eigedom,Eiendom,Maat,kiinteistö,Property,70
+4020,185,Allmenning,Område hvor rettighetene er regulert. (Alle typer. Notér i merknadsfelt),Allmenning,Allmenning,Almunki,yleinen alue,Common,65
+4025,186,Skytefelt,Militære skytefelt.,Skytefelt,Skytefelt,Aampumakenttä,ampumarata,Shooting range,70
+4027,187,Verneområder,"(Alle typer både sjø og land. Notér type f.eks. ?Nasjonalpark? i 
+merknadsfelt)",Verneområde,Verneområder,Suojeluala,suojeltu alue,Protected area,65
+4043,183,Sogn,Kirkesogn Knyttet til Den norske kirke,Sokn,Sogn,Piäs / Suokkana,seurakunta,Parish,60
+4045,269,Adm. bydel,(Offisielt navn på bydelsforvaltningen). Se også ?Bydel? 266.,Bydel,Bydel,Kaupungin osa,kaupungin osa,Part of town,60
+4100,60,Skog,Alle typer fra stor barskog til vierkratt i Finnmark,Skog,Skog,Mettä,metsä,Forest,90
+4100,61,Myr,Alle typer fra gressmyr til våt moldjord,Myr,Myr,Jänkkä,suo,Marsh,90
+4100,62,Utmark,Ikke inngjerdet beitemark,Utmark,Utmark,Ulkoniitty,laiduntamaton alue,Outlaying fields,90
+4100,63,Sva,Bart fjell- / steinparti,Sva,Sva,Paljakka,paljas maa,Slab,90
+4100,64,Ur,"Steinområde, steinrøys",Ur,Ur,Juova,kivikko,Scree,90
+4100,65,Øyr,"Sand-grusområde i elvemunning, elvedelta både mot innsjø / vann og saltvann",Øyr,Øyr,Jovensuukari,"kivinen/hiekkainen delta, joenuoma",Sandy delta,90
+4100,66,Sand,Sand-grusområde over vannkontur / kystkontur. Morenemateriale,Sand,Sand,Kari,hiekkatörmä,Sandbank,90
+4100,67,Eng,Kultivert slåtte / gressmark,Eng,Eng,Karkkee,meadow,Meadow,90
+4100,68,Jorde,Kultivert dyrknings- mark,Jorde,Jorde,Pelto,"pelto, maa",Field,90
+4100,69,Havnehage,Inngjerdet beitemark,Hamnehage,Havnehage,Aita,"laidun, laidunmaa",Pasture,90
+4100,70,Torvtak,Sted for uttak av myrtorv / brenntorv / veksttorv.,Torvtak,Torvtak,Turvetjänkkä / Turvetsarka,turvekatto,Peat area,90
+4100,71,Setervoll,"Ryddet, gressbevokst område på ei seter, med eller uten hus",Setervoll,Setervoll,Kesäsijankenttä,vuoristomaaatila,Mountain farm meadow,80
+4100,72,Park,Kultivert område med eller uten trær. Kolonihage (i by eller tettbygd strøk),Park,Park,Parkki,puisto,Park,60
+4100,263,Skred,"Rasområde: Alle typer materiale (f.eks. stein, jord, sand, leire, o.l.)",Skrede,Skred,Vieremä,vyörymä,Landslide area,90
+4101,226,Grustak/Steinbrudd,"Uttaksplass, område, drevet i dagen for sand, grus, pukk, skifer eller stein",Grustak – Steinbrot,Grustak – Steinbrudd,Karitaaki / Kivivaara,soranottoalue,Gravel pit,90
+4111,227,Tømmervelte,Midlertidig lagringsplass for tømmer Se også SOSI-kapittel: Kyst og sjø,Tømmervelte,Tømmervelte,Hirsiplaana,puupinojen säilytyspaikka,Place for pile of logs,90
+4121,235,Gravplass,"Alle typer gravlunder, gravplasser.",Gravplass,Gravplass,Hautuumaa,hautausmaa,Cemetery,80
+4130,278,Rasteplass,Rasteplass med ansvarlig Statens vegvesen eller annen offentlig myndighet,Rasteplass,Rasteplass,Leppäämäpaikka,piknikalue,Picnic area,90
+4132,191,Campingplass,"Alle typer både for campinghytter, campingvogner og telt",Campingplass,Campingplass,Hyttälaikotus,leirintäalue,Camping ground,60
+4154,228,Hyttefelt,"Offentlig eller privat hyttefelt. Område som har høy utnyttelsesgrad med 
+tanke på hytter.",Hyttefelt,Hyttefelt,Hyttäala,mökkialue,Cottage area,65
+4200,238,Elvemel,Bratt sand- eller grus- skråning langs en elv (eller et vann),Elvemel,Elvemel,Jokimella,joen ranta,Steep river shore,90
+4602,221,Havn,"Sted der fartøy kan laste, losse eller søke ly for vær og sjø.",Hamn,Havn,Hamina,satama,Harbour,60
+5000,108,Bruk (gardsbruk),"Landbruksbebyggelse som er eller har vært knyttet til jord- og / eller 
+skogbruksdrift. (Vanligvis dss. bruks¬navn. Som referanse brukes 
+våningshuset.)",Gardsbruk,Gårdsbruk,Maanpruuki,maatila,Farm,65
+5000,109,Enebolig/mindre boligbygg (villa),"Enebolig eller tomannsbolig Hus for fast bosetting, utenom våningshus, jf. 
+108. (Vanligvis dss. bruks¬navn.)",Bustadhus,Bolighus,Asentohuonet,omakotitalo,Villa,65
+5000,110,"Fritidsbolig (hytte, sommerhus)",Hus som ikke er ment for fast bosetting. (Vanligvis dss bruks¬navn.),Fritidshus – hytte,Fritidshus – hytte,Hyttä,kesämökki,Holiday house,80
+5000,111,"Seter (sel, støl)","Enklere landbruksbe¬byggelse. Kan ha periodisk ?fast? bosetting, vanligvis 
+sommerstid.","Seter (sel, støl)","Seter (sel, støl)",Kesäsija,vuoristo maatila,Mountain farm,80
+5000,112,"Bygg for jordbruk, fiske og fangst","Bu, naust, uthus, fjøs, gamme","Bygg for jordbruk, fiske og fangst","Bygg for jordbruk, fiske og fangst",Rakenus maanpruukkii ja kalanpyyttöö varten,"maatalous, kalastus ja metsästys asutus",Rural building for farming; fishing and hunting,80
+5000,113,Fabrikk,Større industrivirksomhet,Fabrikk,Fabrikk,Fapriikki,tehdas,Factory,80
+5000,114,Kraftstasjon,"Alle størrelser for energi produksjon, (el. og varme)",Kraftstasjon,Kraftstasjon,Voimastašuuni,voimalaitos,Power station,80
+5000,115,Verksted,Mindre industrivirksomhet,Verkstad,Verksted,Paja,verstas,Workshop,80
+5000,116,Forretningsbygg,Hus for kontor- og servicevirksomhet,Forretningsbygg,Forretningsbygg,Kontturi- ja kaupparakenus,liikerakennus,Commercial building,80
+5000,117,Hotell,Offentlig godkjent overnattingssted,Hotell,Hotell,Hotelli,hotelli,Hotel,80
+5000,118,Pensjonat,Offentlig godkjent overnattingssted,Pensjonat,Pensjonat,Yöpymähuonet,asuntola,Boarding house,80
+5000,119,Turisthytte,Overnattingssted,Turisthytte,Turisthytte,Tyristihyttä,turistimajoitus,Hut,45
+5000,120,Skole,Offentlig og privat skole,Skule,Skole,Koulu,koulu,School,60
+5000,121,Sykehus,Offentlig og privat sykehus,Sjukehus,Sykehus,Sikhuusi,sairaala,Hospital,60
+5000,122,Helseinstitusjon,"Aldershjem, rekreasjonshjem o.l.",Helseinstitusjon,Helseinstitusjon,Tervheysinstitušuuni,terveyskeskus,Health institution,80
+5000,123,Kirke,Kirke / Kapell / Arbeidskirke knyttet til Den norske kirke,Kyrkje,Kirke,Kirkko,kirkko,Church,59
+5000,125,Forsamlingshus/Kulturhus,"Teater, kino, samf.hus, grendehus, etc.",Forsamlingshus,Forsamlingshus,Kokkoushuonet,seurakuntatalo,Assembly building,60
+5000,126,Vaktstasjon/Beredsskapsbygning,"Bygning for Politi / Brann / Los / Toll / Ambulanse / Fly- og 
+skipsovervåkning",Vaktstasjon,Vaktstasjon,Vahtistašuuni,vartioasema,Guard house,80
+5000,127,Militært bygg/Anlegg,"Militærleir, militært bygg",Militært anlegg,Militært anlegg,Militäärirustinki,armeijan rakennus / puolustusvoimat,Military installation,80
+5000,128,Idrettshall,Alle typer innendørsanlegg Ishall / svømmehall idrettshall.,Idrettshall,Idrettshall,Sporttihalli,urheiluhalli,Sports centre,80
+5000,218,Bergverk (underjord./dagbrudd),"Gruve, skjerp",Bergverk,Bergverk,Kruuva,kaivos,Mine,80
+5000,229,Barnehage,Offentlig eller privat barnehage,Barnehage,Barnehage,Lastentaras,lastentarha,Kindergarten,90
+5000,230,Poststed (Postkontor),Offisielt poststed,Poststad,Poststed,Postipaikka,posti,Post area,40
+5000,237,"Rådhus (komm, fylke, stat)",Adm.senteret (-huset) i adm. enheten.,Rådhus,Rådhus,Raatihuonet,kaupungintalo,Town hall,60
+5000,248,Universitet/høgskole,Offentlig og privat høyskole og universitet,Universitet – høgskule,Universitet – høgskole,Universiteetti / korkkeekoulu,yliopisto,University – college,60
+5000,249,Annen bygning for religiøse aktiviteter.,"Synagoge, moske, frikirke, menighetshus, kloster, gravkapell, bårehus, 
+krematorium. Noter i merknadsfelt hvilken type + dato for merknaden.",Religiøst bygg,Religiøst bygg,Uskonollinen rakenus,uskonnollinen rakennus,Religious building,60
+5000,250,Fengsel,"Fengsel, arbeidskoloni",Fengsel,Fengsel,Fankila,vankila,Prison,80
+5000,251,Museum/ Galleri/Bibliotek,"Alle typer museum, galleri og bibliotek",Kulturinstitusjon,Kulturinstitusjon,Museumi / Galleria / Biblioteekki,museo/ kauppakeskus/ kirjasto,Cultural institution,80
+5000,252,Garasje/hangarbygg,Parkeringshus / trikkestall / bussgarasje / flyhangar / lokomotivstall,Garasje – hangarbygg,Garasje – hangarbygg,Karaasi,autotalli,Garage – hangar,90
+5000,259,Boligblokk,"Stort boligbygg med 2 eller flere etasjer hvor det er 5 eller flere 
+boligenheter",Bustadblokk,Boligblokk,Asentoblokki / Kertakartano,asuntorakennus,Apartment building,90
+5000,267,Serveringssted,Serveringssted utenfor tettbygd område,Serveringsstad,Serveringssted,Kafeja,kahvila,Cafe,50
+5000,280,Gard,,Gard,Gård,Talo,maatila,Farm,90
+5200,100,By,"Tettsted med handels- og servicefunksjoner. Bymessig med mer eller mindre 
+sammenhengende, kvartalsbebyggelse (bykjerne). Bygninger med 2 eller flere 
+etasjer. (Se også ?Adm. by? 268).",By,By,Kaupunki,kaupunki,City – large town,15
+5200,101,Tettsted,Mindre «bymessig» bebygd område av sentrumskarakter,Tettstad,Tettsted,Tivispaikka,"pieni kaupunki, kylä, taajama",Small town,30
+5200,102,Tettbebyggelse,Mindre bebygd område uten sentrumskarakter f.eks. boligområde,Tettbebyggelse,Tettbebyggelse,Tivisasutus,taajama-alue,Settlement,60
+5200,103,Bygdelag (bygd),Stort uregulert gårdsbruk- og boligområde,Bygd,Bygd,Kylä,asutusalue,Village area,49
+5200,104,Grend,"Mindre uregulert gårdsbruk-, seterfelt- og boligområde",Grend,Grend,Pikku kylä,kylä,Village,45
+5200,105,Boligfelt,Regulert boligområde,Bustadfelt,Boligfelt,Asuma-ala,asutusalue,Housing estate,65
+5200,106,Borettslag,Bofellesskap; vanligvis blokkbebyggelse,Borettslag,Borettslag,Asentolaaki,asunto-oikeusasuntoja,Housing cooperative,65
+5200,107,Industriområde,Større sammenhengende område benyttet for industriformål,Industriområde,Industriområde,Industri-ala,teollisuusalue,Industrial area,65
+5200,132,Bydel,"Kulturmessig del av by. F.eks Gamlebyen, Vålerenga, Posebyen, Nordnes, 
+Lade, Tromsdalen, Fagernes. (Se også ?Adm. bydel? 269)",Byområde,Byområde,Kaupunginosa,kaupungin osa,Part of a city,40
+5200,266,Tettsteddel,Kulturmessig del av tettsted. Se også,Del av tettstad,Del av tettsted,Kvartteeri,taajaman osa,Part of a town,60
+6000,190,Idrettsanlegg,"(Alle typer utendørsanl. Notér type i merknadsfelt, f.eks. ridebane, 
+fotballbane)",Idrettsanlegg,Idrettsanlegg,Sporttirustinki,urheilukeskus,Sporting ground,80
+6000,194,Slalåm- og utforbakke,Alle typer regulerte alpinanlegg.,Slalåm- og utforbakke,Slalåm- og utforbakke,Slaalomiluokka,"slalomrinne, laskettelurinne",Ski slope,60
+6000,210,Skytebane,Pistol- eller geværbane (o.l. våpen),Skytebane,Skytebane,Ampumapaana,ampumarata,Shooting range,80
+6000,222,Badeplass,Offentlige og private badeplasser,Badeplass,Badeplass,Uimapaikka,uimapaikka,Beach,60
+6000,223,Fornøyelsespark,"(Store, regulerte anlegg)",Fornøyingspark,Fornøyelsespark,Somanpitoparkki,huvipuisto,Amusement park,60
+6006,264,Fyllplass,Plass for deponering av masse,Fyllplass,Fyllplass,Roskapaikka,kaatopaikka,Refuse tip,90
+6012,233,Gjerde,"Steingjerde, tregjerde etc.",Gjerde,Gjerde,Aita,"aita, aitaus",Fence,90
+6200,206,Gammel bosettingsplass,"Nedlagt bruk, seter, boplass, gamme. MRK !! Hus borte eller kun ruin.",Gamal busetjingsplass,Gammel bosettingsplass,Auttii / Vanhaa sija,hylätty maatila,Abandoned farm,80
+6200,207,Offersted,"Samisk, norsk eller finsk offersted",Offerstad,Offersted,Uhripaikka,urhipaikka,Sacrificial site,80
+6200,208,Severdighet,"Notér forklaring i merknadsfeltet, f.eks. minnesmerke",Sjåverdig stad,Severdighet,Nähtävä,nähtävyys,Sight,65
+6200,209,Utsiktspunkt,Både i tårn og på bakken f.eks. Kongens utsikt,Utsiktspunkt,Utsiktspunkt,Näkymäpaikka,näköalapaikka,Viewpoint,70
+6200,224,Melkeplass,Seterplass uten hus. Vanligvis i bratte områder på Vestlandet,Mjølkeplass,Melkeplass,Maitopaikka,pieni maatila,Small mountain farm,80
+6200,225,Annen kulturdetalj,"Alle typer kulturdetaljer f.eks. lekeplass, tårn, fiskeplass, etc. Notér 
+forklaring med dato i merknadsfeltet",Annan kulturdetalj,Annen kulturdetalj,Muu kulttuuridetalji,muu kulttuuriin liityyvä yksityiskohta,Other culture detail,80
+6200,254,Varde,"F.eks. merkerøys, steinrøys. Langs kysten og i innlandet",Varde,Varde,Merkkikivi,kiviröykkiö,Cairn,80
+6500,201,Dam,Store reguleringsdammer og små fløtningsdammer,Dam,Dam,Allas,pato,Dam,70
+6500,202,Tømmerrenne,Kunstig tømmeranlegg,Tømmerrenne,Tømmerrenne,Tukkiränni,puusto,Timberpass,70
+6500,204,Fløtningsannlegg,Kunstig fløtningsanlegg,Fløytingsanlegg,Fløtningsanlegg,Uittorustinki,kelluva alue,Floating area,90
+6521,199,Kraftgate (Rørgate),Store tilførselsrør for kraftanlegg,Kraftgate,Kraftgate,Voimalinja,suuri voimalinja,Large power line,90
+6600,154,Kai,"Større, fast bryggeanlegg",Kai,Kai,Pryky,laituri,Quay,80
+6600,155,Brygge,"Mindre, fast bryggeanlegg",Bryggje,Brygge,Pryky,laituri,Pier,80
+6600,156,Ferjelem,Ferjelem på kai for vegtrafikk,Ferjelem,Ferjelem,Lauttaplaatta,laituri,Ferry quay,90
+6600,157,Utstikker,Flytende bryggeanlegg,Utstikkar,Utstikker,Haminapryky / Ulkopryky,kelluva laituri,Pier,90
+6600,158,Sluse,Kunstig løfteanretning for båter i vassdrag,Sluse,Sluse,Venetpato,sulku,Lock,80
+6600,160,Ankringsplass,F.eks. opplagsplass for store båter / skip,Ankringsplass,Ankringsplass,Ankkuripaikka,ankkurointipaikka,Anchoring berths,90
+6600,195,Småbåthavn,Regulerte havneanlegg for småbåter,Småbåthamn,Småbåthavn,Pikku venheitten hamina,pienvenesatama,Small craft harbour,60
+6600,205,Fiskeoppdrettsanlegg,"På land, i sjø og i ferskvann",Fiskeoppdrettsanlegg,Fiskeoppdrettsanlegg,Kalataras,kalankasvatuspaikka,Fish farm,90
+6600,234,Stø,"Båtstø, båtplass i vannkanten uten naust",Stø,Stø,Valkama,laskeutumispaikka,Landing place,90
+6604,236,Molo,"Fast byggverk, utstikkende voll i sjøen",Molo,Molo,Möljä,murtovesi,Breakwater,90
+6701,129,Fyr(Fyrstasjon),Offisielt fyr og fyrstasjon langs kysten.,Fyr,Fyr,Fyyry,majakka,Light house,40
+6702,130,Lykt (Fyrlykt),Offisiell og privat lykt / fyrlykt langs kysten og i innlandet.,Fyrlykt,Fyrlykt,Fyyrylyhty,majakan valo,Lantern,60
+6703,272,Lanterne,"Offisiell og privat lanterne langs kysten og i innlandet, fast",Lanterne,Lanterne,Lyhty,lyhty,Lantern,90
+6800,197,Oljeinstallasjon (Sjø),Stasjonære oljeinstallasjoner (faste og flytende),Oljeinstallasjon,Oljeinstallasjon,Öljyrustinki,öljynporaus merestä,Oil installation at sea,90
+7000,140,Veg (Gate),?Formelle? veg / gatenavn ellers kode 240,Veg,Vei,Tie,tie/katu,Road,80
+7000,149,Kryss (Veg/Gate),(For alle type veger),Kryss,Kryss,Tienristi,risteys,Intersection,90
+7000,153,Parkeringsplass,Offentlig og privat,Parkeringsplass,Parkeringsplass,Parkkeerinkipaikka,"pysäköintipaikka,-alue",Car park,90
+7000,203,Taubane,Uten persontrafikk Se også 193,Taubane,Taubane,Köysipaana,vaijerirata,Cableway,70
+7000,232,Plass/torg,(I tettsted eller by),Plass,Plass,Aukkee,aukio/tori,Square,60
+7000,240,Vegstrekning,"Fjellovergang, turiststrekning, f.eks. Kvænangsfjellet, Gamle Bynesveg, 
+Friisvegen",Vegstrekning,Vegstrekning,Tie,"tie, maantie",Road,60
+7101,219,Jernbanestrekning,Lang jernbanestrekning. F.eks. Ofotbanen; Bergensbanen,Jernbanestrekning,Jernbanestrekning,Rautatie,rautatie,Railway,90
+7200,144,Farled/Skipslei,Normal strekning for skip f.eks. Trondheimsleia,Skipslei,Skipslei,Väylä,reitti,Fairway,60
+7200,145,Ferjestrekning,Eksisterende ferjesamband som inngår i områdets samferdselsnett,Ferjestrekning,Ferjestrekning,Lauttareitti,laivareitti,Ferry,60
+7312,192,Skiheis,Skitrekk og stolheis i skianlegg.,Skiheis,Skiheis,Hihtoheissi,laskettelurinteen hissi,Ski lift,60
+7313,193,Fjellheis,Gondolbane.,Fjellheis,Fjellheis,Tunturiheissi,vuoristohissi,Gondola,60
+7400,142,Traktorveg,Driftsveger for kjøretøyer hvor vegen ikke kan kjøres med vanlig bil.,Traktorveg,Traktorveg,Traktoritie,traktoritie,Dirt road,90
+7400,143,Sti,"Stistrekning, sleper (gamle drifteveger), reindriftsveger",Stig,Sti,Polku,polku,Track,90
+7400,220,Vad,"?Vassested? i elv, bekk vann eller sjø.",Vadestad,Vadested,Kaalama,joenylityspaikka,Ford,90
+7450,231,Adressenavn,"Omfatter et område, ev. som supplement til gate- / veiadresse. (Kommunalt 
+adresseområde)",Adressenamn,Adressenavn,Adressi,osoite,Place,50
+7500,146,Bru,"Både for veg og jernbane. Angi ett punkt i hver ende for store bruer og ett 
+midt på for små bruer.",Bru,Bro,Silta,silta,Bridge,60
+7500,147,Klopp,Gangbru over sjø og ferskvann,Klopp,Klopp,Käymäsilta,kävelysilta,Footbridge,90
+7500,148,Tunnel,"Vanlig tunnel, rasoverbygg, undergang. Både gangveg, veg og jernbane.",Tunnel,Tunnel,Tunneli,tunneli,Tunnel,80
+7500,150,Vegbom,Mindre bomanlegg på privat veg,Vegbom,Vegbom,Tiekrinna,"puomi, tiepuomi",Road gate,90
+7500,151,Bomstasjon,Større bomanlegg på offentlig veg,Bomstasjon,Bomstasjon,Tietulli,puomitettu tie,Road toll station,90
+7500,152,Grind,Port i gjerde,Grind,Grind,Krinna,portti,Field gate,90
+7500,161,Stasjon,Betjent stoppested for jernbane og trikk,Stasjon,Stasjon,Stašuuni,juna-asema,Railway station,60
+7500,162,Holdeplass,Ubetjent stoppested for jernbane og trikk,Haldeplass,Holdeplass,Hollipaikka,junapysäkki,Railway stop,80
+7500,163,Busstopp,Stoppested for rutegående vegtrafikk,Busstopp,Busstopp,Byssistoppi,bussipysäkki,Bus stop,80
+7900,164,Flyplass,Landingsplass for rutegående flytrafikk og regulert privat flygning,Flyplass,Flyplass,Flyyikenttä,lentoasema,Airport,50
+7911,165,Landingsstripe,Landingsplass for privat flygning,Landingsstripe,Landingsstripe,Flyyiraita,lentokenttä,Airfield,60
+8000,196,Rørledning,"Alle typer rørledninger: Olje, gass, vann, etc.",Røyrleidning,Rørledning,Putkisto,putkisto,Pipeline,80
+8000,198,Kraftledning,Vanligvis store overføringsledninger,Kraftleidning,Kraftledning,Voimaleetninki,voimajohto,Power line,90
+8000,200,Kabel,Alle typer kabler i både sjø og ferskvann.,Kabel,Kabel,Kaapeli,kaapeli,Cable,90
+8604,131,TV/Radio-mast,TV / Radio ?tårn Alle typer bakkebasert telekommunikasjon,Radiomast,Radiomast,TV- / raatiotorni,tv-/radiomasto,Radio mast,70
