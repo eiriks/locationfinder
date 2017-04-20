@@ -105,3 +105,4 @@ steder.db
 *.profile
 
 *.db
+*.db-journal

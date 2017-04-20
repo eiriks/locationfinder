@@ -83,7 +83,7 @@ med (kommune, kommunenr). Bruk `municipality=False` får å sleppe.
 
 ```python
 rich_places = lf.disambiguate_places(lf.from_text_to_places(article.text),
-                                        verbose=True, municipality=True, hint_location=(58.163832, 8.002964))
+                                        verbose=False, municipality=True, hint_location=(58.163832, 8.002964))
 rich_places
 [('Agder', (58.163832, 8.002964)),
  ('Vennesla', (58.268564, 7.973144)),

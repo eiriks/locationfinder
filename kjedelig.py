@@ -34,6 +34,7 @@ def create_table():
     	`url`	TEXT,
     	`sted`	TEXT,
     	`kommune`	TEXT,
+    	`kommunenr`	TEXT,
     	`lat`	NUMERIC,
     	`lon`	NUMERIC
     )"""
@@ -50,11 +51,11 @@ def mongo2sqlite():
         # skip sami...
         rich_places = lf.disambiguate_places(lf.from_text_to_places(art['text']))
         for pl in rich_places:
-            #print(pl)
-            #import sys
-            #sys.exit(0) # ('Moss', (59.434017, 10.657697), 'Moss')
-            row = [art['mysql_id'], art['publication_date'].isoformat(), art['url'], pl[0], pl[2], pl[1][0], pl[1][1]]
-            cur.execute('insert into kjedelig values (?,?,?,?,?,?,?)', row)
+            # print(pl)
+            # import sys
+            # sys.exit(0) # ('Moss', (59.434017, 10.657697), ('Moss', 104))
+            row = [art['mysql_id'], art['publication_date'].isoformat(), art['url'], pl[0], pl[2][0], pl[2][1], pl[1][0], pl[1][1]]
+            cur.execute('insert into kjedelig values (?,?,?,?,?,?,?,?)', row)
         ticker+=1
         if ticker == 5000:
             counter += ticker
