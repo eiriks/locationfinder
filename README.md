@@ -75,3 +75,41 @@ lf.disambiguate_places(lf.from_text_to_places(tekst))
  ('Norge', (62.0, 10.0), 'NA'),
  ('Hemsedal', (60.8501, 8.616381), 'Hemsedal')]
 ```
+
+
+# kommuner aka municipality=True
+Default er `False`. Ved å sende med `municipality=True` får du med ut en tuple
+med (kommune, kommunenr).
+
+```python
+rich_places = lf.disambiguate_places(lf.from_text_to_places(article.text),
+                                        verbose=True, municipality=True, hint_location=(58.163832, 8.002964))
+rich_places
+[('Agder', (58.163832, 8.002964)),
+ ('Vennesla', (58.268564, 7.973144)),
+ ('Songdalen', (58.599492, 8.650208)),
+ ('Grimstad', (59.214875, 11.191272)),
+ ('Søgne', (58.093278, 7.782939)),
+ ('Skånes', (63.769306, 11.400722)),
+ ('Vestfold', (59.170786, 10.114436)),
+ ('Kristiansand', (60.568156, 11.798914)),
+ ('Lillesand', (59.024197, 11.034131)),
+ ('Birkenes', (61.770958, 11.187083)),
+ ('Norge', (62.0, 10.0))]
+
+rich_places = lf.disambiguate_places(lf.from_text_to_places(article.text),
+                                        verbose=False, municipality=True)
+
+rich_places
+[('Agder', (58.163832, 8.002964), 'NA'),
+ ('Vennesla', (58.268564, 7.973144), ('Vennesla', 1014)),
+ ('Songdalen', (58.195436, 7.786997), ('Songdalen', 1017)),
+ ('Grimstad', (58.340464, 8.593369), ('Grimstad', 904)),
+ ('Søgne', (58.093278, 7.782939), ('Søgne', 1018)),
+ ('Skånes', (63.769306, 11.400722), ('Levanger', 1719)),
+ ('Vestfold', (59.170786, 10.114436), 'NA'),
+ ('Kristiansand', (58.14615, 7.995733), ('Kristiansand', 1001)),
+ ('Lillesand', (58.249453, 8.377192), ('Lillesand', 926)),
+ ('Birkenes', (62.219864, 5.938894), ('Volda', 1519)),
+ ('Norge', (62.0, 10.0), 'NA')]
+```                                        
