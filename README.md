@@ -78,8 +78,8 @@ lf.disambiguate_places(lf.from_text_to_places(tekst))
 
 
 # kommuner aka municipality=True
-Default er `False`. Ved å sende med `municipality=True` får du med ut en tuple
-med (kommune, kommunenr).
+Default er `True`. Ved å sende med `municipality=True` får du med ut en tuple
+med (kommune, kommunenr). Bruk `municipality=False` får å sleppe.
 
 ```python
 rich_places = lf.disambiguate_places(lf.from_text_to_places(article.text),
