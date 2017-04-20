@@ -103,3 +103,5 @@ steder.db
 *.kml
 *.dat
 *.profile
+
+*.db
